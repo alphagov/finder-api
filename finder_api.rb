@@ -3,7 +3,7 @@ require 'json'
 
 class FinderApi < Sinatra::Application
   get '/finders/:slug/documents.json' do
-    content_type :jsong
+    content_type :json
     case params['case_type']
     when 'merger-inquiries'
       merger_inquiry_cases_json
