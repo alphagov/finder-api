@@ -4,6 +4,7 @@ source 'https://BnrJb6FZyzspBboNJzYZ@gem.fury.io/govuk/'
 gem 'sinatra'
 gem 'json'
 gem 'unicorn'
+gem 'rake'
 
 group :development do
   gem 'mr-sparkle'
