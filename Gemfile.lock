@@ -50,3 +50,4 @@ DEPENDENCIES
   mr-sparkle
   rspec
   sinatra
+  unicorn
