@@ -1,0 +1,101 @@
+{
+  "slug": "cma-cases",
+  "name": "Competition and Markets Authority cases",
+  "document_noun": "case",
+  "facets": [
+    {
+        "key": "case_type",
+        "name": "Case type",
+        "type": "single-select",
+        "include_blank": "All case types",
+        "allowed_values": [
+          {"label": "CA98", "value": "ca98"},
+          {"label": "Cartels", "value": "cartels"},
+          {"label": "Criminal cartels", "value": "criminal-cartels"},
+          {"label": "Markets", "value": "markets"},
+          {"label": "Mergers", "value": "mergers"},
+          {"label": "Consumer enforcement", "value": "consumer-enforcement"},
+          {"label": "Regulatory references and appeals", "value": "regulatory-references-and-appeals"}
+        ]
+    },
+
+    {
+      "key": "case_state",
+      "name": "Case state",
+      "type": "single-select",
+      "include_blank": false,
+      "allowed_values": [
+        {"label": "Open", "value": "open"},
+        {"label": "Closed", "value": "closed"}
+      ]
+    },
+
+    {
+      "key": "case_state",
+      "name": "Case state",
+      "type": "single-select",
+      "include_blank": false,
+      "allowed_values": [
+        {"label": "Open", "value": "open"},
+        {"label": "Closed", "value": "closed"}
+      ]
+    },
+
+    {
+      "key": "market_sector",
+      "name": "Market sector",
+      "type": "single-select",
+      "include_blank": false,
+      "allowed_values": [
+        {"label": "Agriculture, environment and natural resources", "value": "agriculture-environment-and-natural-resources"},
+        {"label": "Aerospace", "value": "aerospace"},
+        {"label": "Biotechnology and pharmaceuticals", "value": "biotechnology-and-pharmaceuticals"},
+        {"label": "Building and construction", "value": "building-and-construction"},
+        {"label": "Chemicals", "value": "chemicals"},
+        {"label": "Clothing, footwear and fashion", "value": "clothing-footwear-and-fashion"},
+        {"label": "Communications", "value": "communications"},
+        {"label": "Defence", "value": "defence"},
+        {"label": "Distribution and Service Industries", "value": "distribution-and-service-industries"},
+        {"label": "Electronics Industry", "value": "electronics-industry"},
+        {"label": "Energy", "value": "energy"},
+        {"label": "Engineering", "value": "engineering"},
+        {"label": "Financial services", "value": "financial-services"},
+        {"label": "Fire, police, and security", "value": "fire-police-and-security"},
+        {"label": "Food manufacturing", "value": "food-manufacturing"},
+        {"label": "Giftware, jewellery and tableware", "value": "giftware-jewellery-and-tableware"},
+        {"label": "Healthcare and medical equipment", "value": "healthcare-and-medical-equipment"},
+        {"label": "Household goods, furniture and furnishings", "value": "household-goods-furniture-and-furnishings"},
+        {"label": "Mineral extraction, mining and quarrying", "value": "mineral-extraction-mining-and-quarrying"},
+        {"label": "Motor Industry", "value": "motor-industry"},
+        {"label": "Oil and Gas refining and Petrochemicals", "value": "oil-and-gas-refining-and-petrochemicals"},
+        {"label": "Recreation and Leisure", "value": "recreation-and-leisure"},
+        {"label": "Paper printing and packaging", "value": "paper-printing-and-packaging"},
+        {"label": "Public markets", "value": "public-markets"},
+        {"label": "Retail and wholesale", "value": "retail-and-wholesale"},
+        {"label": "Telecommunications", "value": "telecommunications"},
+        {"label": "Textiles", "value": "textiles"},
+        {"label": "Transport", "value": "transport"},
+        {"label": "Utilities", "value": "utilities"}
+      ]
+    },
+
+    {
+      "key": "outcome_type",
+      "name": "Outcome",
+      "type": "single-select",
+      "include_blank": false,
+      "allowed_values": [
+        {"label": "Clearance", "value": "clearance"},
+        {"label": "Cancelled", "value": "cancelled"},
+        {"label": "Found not to qualify", "value": "found-not-to-qualify"},
+        {"label": "Clearance with remedies", "value": "clearance-with-remedies"},
+        {"label": "Undertakings in lieu of reference", "value": "undertakings-in-lieu-of-reference"},
+        {"label": "Reference to phase 2", "value": "reference-to-phase-2"},
+        {"label": "Prohibition", "value": "prohibition"},
+        {"label": "Remittals", "value": "remittals"},
+        {"label": "Review of orders and undertakings", "value": "review-of-orders-and-undertakings"},
+        {"label": "Report to Secretary of State", "value": "report-to-secretary-of-state"}
+      ]
+    }
+  ]
+}
