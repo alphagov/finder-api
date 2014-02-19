@@ -3,7 +3,7 @@ When(/^I request the "(.*?)" schema$/) do |slug|
 end
 
 Then(/^I receive a JSON document describing "(.*?)"$/) do |slug|
-  filename = File.expand_path("../../schemas/#{slug}.json", File.dirname(__FILE__))
   expect(@response.status).to eq 200
-  expect(@response.body).to eq File.read(filename)
+  parsed_response = MultiJson.load(@response.body)
+  expect(parsed_response).to eq load_schema(slug)
 end

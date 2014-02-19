@@ -5,6 +5,7 @@ gem 'sinatra'
 gem 'json'
 gem 'unicorn'
 gem 'rake'
+gem 'multi_json', '1.8.4'
 
 group :development do
   gem 'mr-sparkle'
