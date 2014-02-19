@@ -1,7 +1,14 @@
 require 'sinatra'
 require 'json'
 
+require 'config/logging'
+
 class FinderApi < Sinatra::Application
+
+  get '/:slug.json' do |slug|
+    File.read(File.expand_path("schemas/#{slug}.json", File.dirname(__FILE__)))
+  end
+
   get '/finders/:slug/documents.json' do
     matched_cases = params['case_type'] ? cases_for_case_type(params['case_type']) : cases
 

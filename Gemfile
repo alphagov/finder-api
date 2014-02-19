@@ -11,5 +11,7 @@ group :development do
 end
 
 group :test do
-  gem 'rspec'
+  gem 'rspec', '2.14.1'
+  gem 'cucumber', '1.3.10'
+  gem 'rack-test', '0.6.2'
 end
