@@ -7,7 +7,7 @@ class RegisterableSchema
     @schema['slug']
   end
 
-  def name
+  def title
     @schema['name']
   end
 

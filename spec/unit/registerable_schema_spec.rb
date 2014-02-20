@@ -12,7 +12,7 @@ describe RegisterableSchema do
 
   it "presents a version of a schema appropriate for registration with panopticon" do
     expect(registerable.slug).to eq schema['slug']
-    expect(registerable.name).to eq schema['name']
+    expect(registerable.title).to eq schema['name']
     expect(registerable.description).to eq ""
     expect(registerable.state).to eq "live"
     expect(registerable.paths).to eq "/cma-cases"
