@@ -6,7 +6,7 @@ require 'config/logging'
 class FinderApi < Sinatra::Application
 
   get '/:slug.json' do |slug|
-    File.read(File.expand_path("schemas/#{slug}.json", File.dirname(__FILE__)))
+    MultiJson.dump(SchemaRegistry.new.get(slug))
   end
 
   get '/finders/:slug/documents.json' do
