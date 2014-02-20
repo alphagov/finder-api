@@ -1,14 +1,5 @@
-begin
-  require 'cucumber/rake/task'
-  require 'rspec/core/rake_task'
-
-  Cucumber::Rake::Task.new(:cucumber, 'Run all features') do |t|
-    t.fork = true # You may get faster startup if you set this to false
-    t.cucumber_opts = 'features --format pretty'
-  end
-
-  RSpec::Core::RakeTask.new(:spec)
-
-  task :default => [:spec, :cucumber]
-rescue LoadError
+Dir.glob(File.dirname(__FILE__)  + '/lib/tasks/*.rake').each do |r|
+  import r
 end
+
+task :default => [:spec, :cucumber]
