@@ -9,7 +9,8 @@
         "type": "single-select",
         "include_blank": "All case types",
         "allowed_values": [
-          {"label": "CA98", "value": "ca98"},
+          {"label": "CA98 Chapter 1", "value": "ca98-chapter-1"},
+          {"label": "CA98 Chapter 2", "value": "ca98-chapter-2"},
           {"label": "Cartels", "value": "cartels"},
           {"label": "Criminal cartels", "value": "criminal-cartels"},
           {"label": "Markets", "value": "markets"},
@@ -49,7 +50,6 @@
       "allowed_values": [
         {"label": "Agriculture, environment and natural resources", "value": "agriculture-environment-and-natural-resources"},
         {"label": "Aerospace", "value": "aerospace"},
-        {"label": "Biotechnology and pharmaceuticals", "value": "biotechnology-and-pharmaceuticals"},
         {"label": "Building and construction", "value": "building-and-construction"},
         {"label": "Chemicals", "value": "chemicals"},
         {"label": "Clothing, footwear and fashion", "value": "clothing-footwear-and-fashion"},
@@ -70,31 +70,13 @@
         {"label": "Oil and Gas refining and Petrochemicals", "value": "oil-and-gas-refining-and-petrochemicals"},
         {"label": "Recreation and Leisure", "value": "recreation-and-leisure"},
         {"label": "Paper printing and packaging", "value": "paper-printing-and-packaging"},
+        {"label": "Pharmaceuticals", "value": "pharmaceuticals"},
         {"label": "Public markets", "value": "public-markets"},
         {"label": "Retail and wholesale", "value": "retail-and-wholesale"},
         {"label": "Telecommunications", "value": "telecommunications"},
         {"label": "Textiles", "value": "textiles"},
         {"label": "Transport", "value": "transport"},
         {"label": "Utilities", "value": "utilities"}
-      ]
-    },
-
-    {
-      "key": "outcome_type",
-      "name": "Outcome",
-      "type": "single-select",
-      "include_blank": false,
-      "allowed_values": [
-        {"label": "Clearance", "value": "clearance"},
-        {"label": "Cancelled", "value": "cancelled"},
-        {"label": "Found not to qualify", "value": "found-not-to-qualify"},
-        {"label": "Clearance with remedies", "value": "clearance-with-remedies"},
-        {"label": "Undertakings in lieu of reference", "value": "undertakings-in-lieu-of-reference"},
-        {"label": "Reference to phase 2", "value": "reference-to-phase-2"},
-        {"label": "Prohibition", "value": "prohibition"},
-        {"label": "Remittals", "value": "remittals"},
-        {"label": "Review of orders and undertakings", "value": "review-of-orders-and-undertakings"},
-        {"label": "Report to Secretary of State", "value": "report-to-secretary-of-state"}
       ]
     }
   ]
