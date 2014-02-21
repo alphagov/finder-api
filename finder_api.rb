@@ -2,6 +2,9 @@ require 'sinatra'
 require 'json'
 
 require 'config/logging'
+Dir["#{File.dirname(__FILE__)}/config/initializers/*.rb"].each do |path|
+  require path
+end
 
 class FinderApi < Sinatra::Application
 
