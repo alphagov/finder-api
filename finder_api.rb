@@ -6,6 +6,8 @@ Dir["#{File.dirname(__FILE__)}/config/initializers/*.rb"].each do |path|
   require path
 end
 
+require 'schema_registry'
+
 class FinderApi < Sinatra::Application
 
   get '/:slug.json' do |slug|
