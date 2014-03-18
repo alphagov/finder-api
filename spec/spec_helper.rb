@@ -16,10 +16,10 @@ RSpec.configure do |config|
   config.order = 'random'
 
   config.expect_with :rspec do |expectations|
-    expectations.syntax :expect
+    expectations.syntax = :expect
   end
 
   config.mock_with :rspec do |mocks|
-    mocks.syntax :expect
+    mocks.syntax = :expect
   end
 end
