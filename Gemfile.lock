@@ -1,6 +1,5 @@
 GEM
   remote: https://rubygems.org/
-  remote: https://BnrJb6FZyzspBboNJzYZ@gem.fury.io/govuk/
   specs:
     PriorityQueue (0.1.2)
     builder (3.1.4)
