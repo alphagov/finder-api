@@ -16,3 +16,5 @@ group :test do
   gem 'cucumber', '1.3.10'
   gem 'rack-test', '0.6.2'
 end
+
+gem 'byebug', group: [:test, :development]
