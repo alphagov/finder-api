@@ -31,17 +31,6 @@
     },
 
     {
-      "key": "case_state",
-      "name": "Case state",
-      "type": "single-select",
-      "include_blank": false,
-      "allowed_values": [
-        {"label": "Open", "value": "open"},
-        {"label": "Closed", "value": "closed"}
-      ]
-    },
-
-    {
       "key": "market_sector",
       "name": "Market sector",
       "type": "single-select",
