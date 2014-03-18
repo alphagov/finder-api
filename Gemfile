@@ -6,6 +6,7 @@ gem 'unicorn'
 gem 'rake'
 gem 'multi_json', '1.8.4'
 gem 'gds-api-adapters', '8.4.1'
+gem 'faraday', '0.9.0'
 
 group :development do
   gem 'mr-sparkle'

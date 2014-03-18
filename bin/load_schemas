@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift(File.expand_path('../..', __FILE__))
+
+require 'multi_json'
+require 'faraday'
+require 'lib/elastic_search_registerer'
+require 'lib/elastic_search_mapping'
+require 'config/initializers/elasticsearch'
+
+http_client = Faraday.new(url: ELASTIC_SEARCH_BASE_URI)
+registerer = ElasticSearchRegisterer.new(http_client)
+
+ARGV.each do |file_path|
+  File.open(file_path) do |file|
+    finder_schema = MultiJson.load(file.read)
+    mapping = ElasticSearchMapping.new(finder_schema)
+    registerer.store_map(mapping)
+  end
+end
