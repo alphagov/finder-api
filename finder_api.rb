@@ -6,19 +6,51 @@ Dir["#{File.dirname(__FILE__)}/config/initializers/*.rb"].each do |path|
   require path
 end
 
+require 'application'
+
 require 'schema_registry'
 
 class FinderApi < Sinatra::Application
 
   get '/:slug.json' do |slug|
-    MultiJson.dump(SchemaRegistry.new.get(slug))
+    schema = app.send(:schema_registry).fetch(slug)
+    success(schema)
   end
 
   get '/finders/:slug/documents.json' do
-    matched_cases = params['case_type'] ? cases_for_case_type(params['case_type']) : cases
+    app.find_case(
+      sinatra_adapter,
+    )
+  end
 
-    content_type :json
-    json_for_cases(matched_cases)
+  def app
+    Application.new
+  end
+
+  def sinatra_adapter
+    self
+  end
+
+  # TODO: extract these into another object
+  module SinatraAdapter
+    def success(content)
+      status(200)
+      json_body(content)
+
+      return_nil_so_sinatra_does_not_double_render
+    end
+
+    def json_body(content)
+      content_type :json
+
+      body(MultiJson.dump(content))
+    end
+  end
+
+  include SinatraAdapter
+
+  def return_nil_so_sinatra_does_not_double_render
+    return nil # so sinatra does not double render
   end
 
   def json_for_cases(cases)
@@ -28,25 +60,20 @@ class FinderApi < Sinatra::Application
     }.to_json
   end
 
-  def cases_for_case_type(case_type)
-    cases.select do |case_hash|
-      case_type_metadata = case_hash['metadata'].find do |meta|
-        meta['name'] == 'case_type'
-      end
+end
 
-      case_type_metadata['value'] == case_type
-    end
+# This prevents the all too common issue of a request for JSON sending back a
+# HTML web page with the error info on.
+# TODO: Send PR to fix this in Sinatra and remove
+Sinatra::ShowExceptions.class_eval do
+  def prefers_plain_text?(env)
+    !client_accepts_html?(env)
   end
 
-  def cases
-    @cases ||= case_files.map do |filename|
-      JSON.load(File.new(filename))
-    end
-  end
+  private
 
-  def case_files
-    Dir.foreach('cases').select { |x| x =~ /\.json\Z/ }.map do |filename|
-      "cases/#{filename}"
-    end
+  def client_accepts_html?(env)
+    env['HTTP_ACCEPT'].to_s.include?('text/html')
   end
 end
+
