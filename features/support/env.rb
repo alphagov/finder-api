@@ -14,12 +14,21 @@ module SinatraTestIntegration
   end
 end
 
+module PersistenceHelpers
+  extend self
+
+  def clear_elastic_search
+    delete_command = "curl -XDELETE 'http://localhost:9200/finder-api-test'"
+    system(delete_command)
+  end
+end
+
 World(SinatraTestIntegration)
 World(SchemaHelpers)
+World(PersistenceHelpers)
 
 Around do |_, block|
-  delete_command = "curl -XDELETE 'http://localhost:9200/finder-api'"
-  system(delete_command)
+  PersistenceHelpers.clear_elastic_search
   block.call
-  system(delete_command)
+  PersistenceHelpers.clear_elastic_search
 end

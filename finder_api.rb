@@ -23,6 +23,10 @@ class FinderApi < Sinatra::Application
     )
   end
 
+  post '/finders/:slug' do
+    status(201)
+  end
+
   def app
     Application.new
   end
