@@ -1,62 +1,47 @@
+require "core_ext"
+
 class CasePresenter
 
   def initialize(schema, case_data)
     @schema = schema
-    @case_data = case_data.stringify_keys
+    @case_data = case_data
   end
 
   def to_h
     case_data
-      .slice(*direct_copy_fields)
-      .merge(other_fields)
+      .except(*exclude_fields)
+      .merge(expanded_facets)
   end
 
   private
 
   attr_reader :schema, :case_data
 
-  def direct_copy_fields
+  def exclude_fields
     %w(
-      title
+      body
     )
   end
 
-  def other_fields
-    {
-      "opened_date" => opened_date,
-      "url" => url,
-      "case_type" => schema_label_and_value_pair_for("case_type"),
-      "case_state" => schema_label_and_value_pair_for("case_state"),
-    }
+  def expanded_facets
+    Hash[expandable_facets.map do |facet_name|
+      [ facet_name, expand_facet_value(facet_name) ]
+    end]
   end
 
-  def opened_date
-    case_data.fetch("date_of_referral")
-  end
-
-  def url
-    case_data.fetch("original_urls").first
-  end
-
-  def schema_label_and_value_pair_for(field_name)
-    value = fetch_value_for(field_name)
-
+  def expand_facet_value(facet_name)
+    value = case_data.fetch(facet_name)
     {
       "value" => value,
-      "label" => schema_label_for(field_name, value)
+      "label" => schema.label_for(facet_name, value)
     }
   end
 
-  def fetch_value_for(field_name)
-    case_data.fetch(field_name)
+  def expandable_facets
+    multi_select_field_names & case_data.keys
   end
 
-  def schema_label_for(field_name, value)
-    schema
-      .fetch("facets")
-      .find { |hash| hash.fetch("key") == field_name }
-      .fetch("allowed_values")
-      .find { |hash| hash.fetch("value") == value }
-      .fetch("label")
+  def multi_select_field_names
+    schema.facets
   end
 end

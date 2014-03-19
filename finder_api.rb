@@ -7,24 +7,27 @@ Dir["#{File.dirname(__FILE__)}/config/initializers/*.rb"].each do |path|
 end
 
 require 'application'
-
-require 'schema_registry'
+require 'adapters/sinatra_adapter'
 
 class FinderApi < Sinatra::Application
 
   get '/:slug.json' do |slug|
-    schema = app.send(:schema_registry).fetch(slug)
-    success(schema)
+    schema = app.send(:schemas).fetch(slug)
+    sinatra_adapter.success(schema.to_h)
   end
 
   get '/finders/:slug/documents.json' do
-    app.find_case(
-      sinatra_adapter,
-    )
+    app.find_case(sinatra_adapter)
   end
 
   post '/finders/:slug' do
-    status(201)
+    app.register_case(sinatra_adapter)
+  end
+
+  def initialize(*args, &block)
+    super
+
+    app.initialize_persistence
   end
 
   def app
@@ -32,29 +35,7 @@ class FinderApi < Sinatra::Application
   end
 
   def sinatra_adapter
-    self
-  end
-
-  # TODO: extract these into another object
-  module SinatraAdapter
-    def success(content)
-      status(200)
-      json_body(content)
-
-      return_nil_so_sinatra_does_not_double_render
-    end
-
-    def json_body(content)
-      content_type :json
-
-      body(MultiJson.dump(content))
-    end
-  end
-
-  include SinatraAdapter
-
-  def return_nil_so_sinatra_does_not_double_render
-    return nil # so sinatra does not double render
+    SinatraAdapter.new(self)
   end
 
   def json_for_cases(cases)

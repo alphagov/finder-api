@@ -24,7 +24,7 @@ class Hash
     transform_keys{ |key| key.to_s }
   end
 
-  private
+  protected
   def except!(*keys)
     keys.each { |key| delete(key) }
     self

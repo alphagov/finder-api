@@ -7,7 +7,7 @@ namespace :panopticon do
 
     app = Application.new
 
-    app.send(:schema_registry).all.each do |slug, schema|
+    app.send(:schemas).each do |slug, schema|
       PanopticonRegisterer.register(schema)
     end
   end

@@ -1,8 +1,27 @@
-require "services/find_case"
-require "lib/core_ext"
+$LOAD_PATH.unshift(File.expand_path("..", __FILE__))
+$LOAD_PATH.unshift(File.expand_path("../lib", __FILE__))
+
+require "faraday"
+require 'faraday_middleware'
+
+require "core_ext"
 require "presenters/case_presenter"
+require "elastic_search_repository"
+require "elastic_search_registerer"
+require "elastic_search_mapping"
+require "finder_schema"
+require "schema_registry"
+require "adapters/null_adapter"
+
+Dir.glob("services/*.rb").each { |f| require f }
 
 class Application
+  def initialize(env = ENV, schemas_glob: default_schemas_glob)
+    @elastic_search_base_uri = ENV.fetch("ELASTIC_SEARCH_BASE_URI", "http://localhost:9200")
+    @persistence_namespace = ENV.fetch("ELASTIC_SEARCH_NAMESPACE", "finder-api-test")
+    @schemas_glob = schemas_glob
+  end
+
   def find_case(context)
     FindCase.new(
       cases_repository,
@@ -11,12 +30,48 @@ class Application
     ).call
   end
 
+  def register_case(context)
+    RegisterCase.new(
+      cases_repository,
+      context,
+    ).call
+  end
+
+  def initialize_persistence(context = NullAdapter.new)
+    RegisterSchemaWithElasticSearch.new(
+      schema_registerer,
+      elastic_search_translator,
+      schemas.values,
+      context,
+    ).call
+  end
+
   private
 
+  attr_reader(
+    :elastic_search_base_uri,
+    :persistence_namespace,
+    :schemas_glob,
+  )
+
   def cases_repository
-    @cases ||= Dir.glob('features/support/fixtures/cases/**/*.json').map { |f|
-      JSON.load(File.read(f))
-    }
+    ElasticSearchRepository.new(es_http_client, persistence_namespace, finder_type)
+  end
+
+  def elastic_search_translator
+    ElasticSearchMapping.method(:new)
+  end
+
+  def schema_registerer
+    ElasticSearchRegisterer.new(es_http_client, persistence_namespace)
+  end
+
+  def es_http_client
+    Faraday.new(:url => @elastic_search_base_uri) do |conn|
+      conn.response :json
+
+      conn.adapter Faraday.default_adapter
+    end
   end
 
   def case_presenter
@@ -26,14 +81,22 @@ class Application
   end
 
   def cma_schema
-    schema_registry.fetch("cma-cases")
+    schemas.fetch(finder_type)
   end
 
-  def schema_registry
-    SchemaRegistry.new(schema_path)
+  def finder_type
+    "cma-cases"
   end
 
-  def schema_path
-    "schemas"
+  def schemas
+    Hash[
+      SchemaRegistry.new(schemas_glob).all.map { |slug, schema|
+        [slug, FinderSchema.new(schema)]
+      }
+    ]
+  end
+
+  def default_schemas_glob
+    "schemas/**/*.json"
   end
 end

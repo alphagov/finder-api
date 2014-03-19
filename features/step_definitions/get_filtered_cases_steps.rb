@@ -1,5 +1,9 @@
 Given(/^there are registered documents$/) do
-  # TODO: PUT enpoint
+  response = post_new_document
+
+  expect(response.status).to eq(201)
+
+  force_elastic_search_consistency
 end
 
 When(/^I GET "(.*?)"$/) do |path|

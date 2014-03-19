@@ -33,9 +33,7 @@ class FindCase
   end
 
   def cases_for_case_type(case_type)
-    cases.select { |case_hash|
-      case_hash.fetch("case_type") == case_type
-    }
+    cases.find_by(case_type: case_type)
   end
 end
 

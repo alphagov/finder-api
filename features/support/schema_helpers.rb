@@ -19,10 +19,10 @@ module SchemaHelpers
   end
 
   def check_for_mapping_in_elasticsearch
-    mapping_json = open(ELASTIC_SEARCH_BASE_URI + "/finder-api/cma-cases-test/_mapping")
+    mapping_json = open(ELASTIC_SEARCH_BASE_URI + "/finder-api-test/cma-cases/_mapping")
     response = MultiJson.load(mapping_json)
 
-    mapping = response.fetch("cma-cases-test").fetch("properties")
+    mapping = response.fetch("cma-cases").fetch("properties")
 
     expect(mapping).to have_key('case_type')
   end

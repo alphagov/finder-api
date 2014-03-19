@@ -5,7 +5,7 @@ class ElasticSearchMapping
     @schema = schema
   end
 
-  def to_hash
+  def to_h
     mapping
   end
 

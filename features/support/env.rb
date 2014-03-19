@@ -1,10 +1,13 @@
 $LOAD_PATH.unshift(File.expand_path("../../", File.dirname(__FILE__)))
 $LOAD_PATH.unshift(File.expand_path("../../lib/", File.dirname(__FILE__)))
+require 'byebug'
+require 'pry'
+require 'awesome_print'
 
 require "rack/test"
 require "finder_api"
 require "features/support/schema_helpers"
-require 'byebug'
+require "features/support/case_helpers"
 
 module SinatraTestIntegration
   include Rack::Test::Methods
@@ -21,10 +24,15 @@ module PersistenceHelpers
     delete_command = "curl -XDELETE 'http://localhost:9200/finder-api-test'"
     system(delete_command)
   end
+
+  def force_elastic_search_consistency
+   system("curl -XPOST 'http://localhost:9200/finder-api-test/_flush'")
+  end
 end
 
 World(SinatraTestIntegration)
 World(SchemaHelpers)
+World(CaseHelpers)
 World(PersistenceHelpers)
 
 Around do |_, block|

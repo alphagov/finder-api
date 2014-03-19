@@ -11,16 +11,27 @@ Feature: GET filtered cases
       {
         "results": [
           {
-            "title": "Review of IMS Health undertakings",
-            "url": "http://www.competition-commission.org.uk/our-work/directory-of-all-inquiries/review-of-ims-health-incorporated-undertakings",
-            "opened_date": "2013-08-06",
+            "title": "Heathcorp / Druginc merger inquiry",
+            "slug": "cma-cases/healthcorp-druginc-merger-inquiry",
+            "opened_date": "2003-12-30",
+            "closed_date": "2004-03-01",
+            "summary": "Inquiry into the Healthcorp / Druginc merger",
+
+            "market_sector": {
+              "value": "pharmaceuticals",
+              "label": "Pharmaceuticals"
+            },
             "case_type": {
-              "value": "review-of-orders-and-undertakings",
-              "label": "Reviews of orders and undertakings"
+              "value": "mergers",
+              "label": "Mergers"
+            },
+            "outcome_type": {
+              "value": "ca98-infringement-chapter-i",
+              "label": "CA98 - infringement Chapter I"
             },
             "case_state": {
-              "value": "open",
-              "label": "Open"
+              "value": "closed",
+              "label": "Closed"
             }
           }
         ]

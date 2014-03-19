@@ -8,15 +8,17 @@ Feature: POST new cases
     When I POST "/finders/cma-cases" with the following case data
     """
       {
-        "original_url": "http://www.competition-commission.org.uk/our-work/directory-of-all-inquiries/payday-lending",
-        "title": "Payday lending market investigation",
-        "case_type": "markets",
-        "original_urls": [
-          "http://www.competition-commission.org.uk/our-work/directory-of-all-inquiries/payday-lending",
-        ],
-        "date_of_referral": "2013-06-27",
-        "statutory_deadline": "2015-06-26",
-        "case_state": "open"
+        "slug": "cma-cases/healthcorp-druginc-merger-inquiry",
+        "title": "Heathcorp / Druginc merger inquiry",
+        "summary": "Inquiry into the Healthcorp / Druginc merger",
+        "body": "# Phase 1\n\nThe investigation",
+        "opened_date": "2003-12-30",
+        "closed_date": "2004-03-01",
+        "case_type": "mergers",
+        "case_state": "closed",
+        "market_sector": "pharmaceuticals",
+        "outcome_type": "ca98-infringement-chapter-i"
       }
     """
     Then I receive an empty 201 response
+    And the case eventually shows up in search results
