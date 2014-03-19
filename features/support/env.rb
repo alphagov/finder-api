@@ -44,6 +44,10 @@ module PersistenceHelpers
     output = `curl -XPOST '#{elastic_search_base_uri}/#{elastic_search_namespace}/_flush' 2>&1`
     raise output unless $?.success?
   end
+
+  def force_elastic_search_consistency
+   system("curl -XPOST 'http://localhost:9200/finder-api-test/_flush'")
+  end
 end
 
 World(SinatraTestIntegration)
