@@ -21,12 +21,13 @@ module PersistenceHelpers
   extend self
 
   def clear_elastic_search
-    delete_command = "curl -XDELETE 'http://localhost:9200/finder-api-test'"
-    system(delete_command)
+    output = `curl -XDELETE 'http://localhost:9200/finder-api-test' 2>&1`
+    raise output unless $?.success?
   end
 
   def force_elastic_search_consistency
-   system("curl -XPOST 'http://localhost:9200/finder-api-test/_flush'")
+    output = `curl -XPOST 'http://localhost:9200/finder-api-test/_flush' 2>&1`
+    raise output unless $?.success?
   end
 end
 
