@@ -5,7 +5,7 @@ namespace :panopticon do
     require 'panopticon_registerer'
     require 'config/initializers/panopticon_api_credentials.rb'
 
-    app = Application.new
+    app = Application.new(ENV)
 
     app.send(:schemas).each do |slug, schema|
       PanopticonRegisterer.register(schema)

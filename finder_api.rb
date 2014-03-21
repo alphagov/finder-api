@@ -7,6 +7,7 @@ Dir["#{File.dirname(__FILE__)}/config/initializers/*.rb"].each do |path|
 end
 
 require 'application'
+THE_APPLICATION ||= Application.new(ENV)
 require 'adapters/sinatra_adapter'
 
 class FinderApi < Sinatra::Application
@@ -31,7 +32,7 @@ class FinderApi < Sinatra::Application
   end
 
   def app
-    Application.new
+    THE_APPLICATION
   end
 
   def sinatra_adapter

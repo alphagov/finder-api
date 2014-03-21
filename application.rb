@@ -16,9 +16,9 @@ require "adapters/null_adapter"
 Dir.glob("services/*.rb").each { |f| require f }
 
 class Application
-  def initialize(env = ENV, schemas_glob: default_schemas_glob)
-    @elastic_search_base_uri = ENV.fetch("ELASTIC_SEARCH_BASE_URI", "http://localhost:9200")
-    @persistence_namespace = ENV.fetch("ELASTIC_SEARCH_NAMESPACE", "finder-api-test")
+  def initialize(env, schemas_glob: default_schemas_glob)
+    @elastic_search_base_uri = env.fetch("ELASTIC_SEARCH_BASE_URI")
+    @persistence_namespace = env.fetch("ELASTIC_SEARCH_NAMESPACE")
     @schemas_glob = schemas_glob
   end
 

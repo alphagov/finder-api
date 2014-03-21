@@ -19,7 +19,7 @@ module SchemaHelpers
   end
 
   def check_for_mapping_in_elasticsearch
-    mapping_json = open(ELASTIC_SEARCH_BASE_URI + "/finder-api-test/cma-cases/_mapping")
+    mapping_json = open(ENV.fetch('ELASTIC_SEARCH_BASE_URI') + "/finder-api-test/cma-cases/_mapping")
     response = MultiJson.load(mapping_json)
 
     mapping = response.fetch("cma-cases").fetch("properties")
