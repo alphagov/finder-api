@@ -46,3 +46,12 @@ Then(/^I receive all "(.*?)" documents with outcome "(.*?)"$/) do |case_state, o
   outcomes = cases.map { |c| c.fetch("outcome_type").fetch("value") }
   expect(outcomes.all? { |outcome| outcome == outcome_type }).to be_true
 end
+
+Then(/^I receive documents with outcomes "(.*?)" and "(.*?)"$/) do |outcome_one, outcome_two|
+  cases = MultiJson.load(@response.body).fetch("results")
+
+  expect(cases).to have(2).items
+
+  outcomes = cases.map { |c| c.fetch("outcome_type").fetch("value") }
+  expect(outcomes.all? { |outcome| [outcome_one, outcome_two].include?(outcome) }).to be_true
+end

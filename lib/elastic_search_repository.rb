@@ -38,11 +38,11 @@ class ElasticSearchRepository
           to: "#{value}-12-31"
         } } }
       else
-        { term: { facet => value } }
+        { terms: { facet => Array(value) } }
       end
     end
 
-    query = { query: { bool: { must: criteria } } }
+    query = { filter: { and: { filters: criteria } } }
 
     MultiJson.dump(query)
   end

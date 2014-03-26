@@ -53,7 +53,12 @@ Feature: GET filtered cases
     When I GET "/finders/cma-cases/documents.json?opened_date=2006"
     Then I receive all documents with an opened date in "2006"
 
-  Scenario: Filter by single values over mutiple fields
+  Scenario: Filter by single values over multiple fields
     Given there are registered documents
     When I GET "/finders/cma-cases/documents.json?outcome_type=ca98-infringement-chapter-i&case_state=closed"
     Then I receive all "closed" documents with outcome "ca98-infringement-chapter-i"
+
+  Scenario: Filter by multiple values for a single field
+    Given there are registered documents
+    When I GET "/finders/cma-cases/documents.json?outcome_type[]=ca98-infringement-chapter-i&outcome_type[]=mergers-phase-1-found-not-to-qualify"
+    Then I receive documents with outcomes "ca98-infringement-chapter-i" and "mergers-phase-1-found-not-to-qualify"
