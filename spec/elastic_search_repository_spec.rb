@@ -58,11 +58,11 @@ describe ElasticSearchRepository do
 
       let(:es_term_query) {
         {
-          "query" => {
-            "bool" => {
-              "must" => [
+          "filter" => {
+            "and" => {
+              "filters" => [
                 {
-                  "term" => { "case_state" => "open" }
+                  "terms" => { "case_state" => ["open"] }
                 }
               ]
             }
@@ -87,16 +87,20 @@ describe ElasticSearchRepository do
 
       let(:es_range_query) {
         {
-          "query" => {
-            "bool" => {
-              "must" => [
-                {
-                  "range" => {
-                    "opened_date" => {
-                      "from" => "2006-01-01",
-                      "to" => "2006-12-31",
+          "filter" => {
+            "and" => {
+              "filters" => [
+                "or" => {
+                  "filters" => [
+                    {
+                      "range" => {
+                        "opened_date" => {
+                          "from" => "2006-01-01",
+                          "to" => "2006-12-31",
+                        }
+                      }
                     }
-                  }
+                  ]
                 }
               ]
             }
