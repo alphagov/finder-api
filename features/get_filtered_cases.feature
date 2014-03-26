@@ -13,8 +13,8 @@ Feature: GET filtered cases
           {
             "title": "Heathcorp / Druginc merger inquiry",
             "slug": "cma-cases/healthcorp-druginc-merger-inquiry",
-            "opened_date": "2003-12-30",
-            "closed_date": "2004-03-01",
+            "opened_date": "2005-12-30",
+            "closed_date": "2006-03-01",
             "summary": "Inquiry into the Healthcorp / Druginc merger",
 
             "market_sector": {
@@ -62,3 +62,8 @@ Feature: GET filtered cases
     Given there are registered documents
     When I GET "/finders/cma-cases/documents.json?outcome_type[]=ca98-infringement-chapter-i&outcome_type[]=mergers-phase-1-found-not-to-qualify"
     Then I receive documents with outcomes "ca98-infringement-chapter-i" and "mergers-phase-1-found-not-to-qualify"
+
+  Scenario: Filter by multiple values for a single date field
+    Given there are registered documents
+    When I GET "/finders/cma-cases/documents.json?opened_date[]=2003&opened_date[]=2006"
+    Then I receive documents opened in "2003" and "2006"

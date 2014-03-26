@@ -33,10 +33,14 @@ class ElasticSearchRepository
   def criteria_to_es_format(hash)
     criteria = hash.map do |facet, value|
       if facet =~ /_date\Z/
-        { range: { facet => {
-          from: "#{value}-01-01",
-          to: "#{value}-12-31"
-        } } }
+        date_ranges = Array(value).map do |year|
+          { range: { facet => {
+            from: "#{year}-01-01",
+            to: "#{year}-12-31"
+          } } }
+        end
+
+        { or: { filters: date_ranges } }
       else
         { terms: { facet => Array(value) } }
       end

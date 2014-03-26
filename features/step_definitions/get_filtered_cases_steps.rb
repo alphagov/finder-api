@@ -55,3 +55,12 @@ Then(/^I receive documents with outcomes "(.*?)" and "(.*?)"$/) do |outcome_one,
   outcomes = cases.map { |c| c.fetch("outcome_type").fetch("value") }
   expect(outcomes.all? { |outcome| [outcome_one, outcome_two].include?(outcome) }).to be_true
 end
+
+Then(/^I receive documents opened in "(.*?)" and "(.*?)"$/) do |year_one, year_two|
+  cases = MultiJson.load(@response.body).fetch("results")
+
+  expect(cases).to have(2).items
+
+  dates = cases.map { |c| c.fetch("opened_date") }
+  expect(dates.all? { |d| d.include?(year_one) || d.include?(year_two) }).to be_true
+end
