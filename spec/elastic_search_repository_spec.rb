@@ -52,7 +52,7 @@ describe ElasticSearchRepository do
     context "when the criteria is a single string match" do
       let(:criteria) {
         {
-          "case_state" => ["open"],
+          "case_state" => "open",
         }
       }
 
@@ -88,11 +88,17 @@ describe ElasticSearchRepository do
       let(:es_range_query) {
         {
           "query" => {
-            "range" => {
-              "opened_date" => {
-                "from" => "2006",
-                "to" => "2006",
-              }
+            "bool" => {
+              "must" => [
+                {
+                  "range" => {
+                    "opened_date" => {
+                      "from" => "2006-01-01",
+                      "to" => "2006-12-31",
+                    }
+                  }
+                }
+              ]
             }
           }
         }

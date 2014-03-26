@@ -5,7 +5,7 @@ Feature: GET filtered cases
 
   Scenario: Request all CMA "Mergers" cases
     Given there are registered documents
-    When I GET "/finders/cma-cases/documents.json?case_type[]=mergers"
+    When I GET "/finders/cma-cases/documents.json?case_type=mergers"
     Then I receive the following response
     """
       {
@@ -26,8 +26,8 @@ Feature: GET filtered cases
               "label": "Mergers"
             },
             "outcome_type": {
-              "value": "ca98-infringement-chapter-i",
-              "label": "CA98 - infringement Chapter I"
+              "value": "mergers-phase-1-found-not-to-qualify",
+              "label": "Mergers - phase 1 found not to qualify"
             },
             "case_state": {
               "value": "closed",
@@ -55,5 +55,5 @@ Feature: GET filtered cases
 
   Scenario: Filter by single values over mutiple fields
     Given there are registered documents
-    When I GET "/finders/cma-cases/documents.json?outcome_type=ca98-infringement-chapter-i&case_type=closed"
+    When I GET "/finders/cma-cases/documents.json?outcome_type=ca98-infringement-chapter-i&case_state=closed"
     Then I receive all "closed" documents with outcome "ca98-infringement-chapter-i"
