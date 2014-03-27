@@ -11,8 +11,9 @@ class ElasticSearchRepository
 
   def find_by(criteria)
     # TODO: refactor into an adapter
-    get("/#{namespace}/_search", criteria)
+    post("/#{namespace}/_search", criteria_to_es_format(criteria))
       .body
+      .tap { |o| binding.pry}
       .fetch("hits")
       .fetch("hits")
       .map { |r| r.fetch("_source") }
@@ -27,4 +28,31 @@ class ElasticSearchRepository
   attr_reader :http_client, :namespace, :finder_type
 
   def_delegators :http_client, :get, :post
+
+  def criteria_to_es_format(hash)
+    if hash.has_key?("opened_date")
+      range_query = {
+        "query" => {
+          "range" => {
+            "opened_date" => {
+              "from" => hash.fetch("opened_date"),
+              "to" => hash.fetch("opened_date"),
+            }
+          }
+        }
+      }
+
+      MultiJson.dump(range_query)
+    else
+      query = {
+        query: {
+          bool: {
+            must: hash.map { |k, v| { term: { k => [*v].join } } }
+          }
+        }
+      }
+
+      MultiJson.dump(query)
+    end
+  end
 end

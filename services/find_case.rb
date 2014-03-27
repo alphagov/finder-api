@@ -29,11 +29,11 @@ class FindCase
   end
 
   def matching_cases
-    cases_for_case_type(context.params.fetch("case_type"))
+    cases.find_by(criteria)
   end
 
-  def cases_for_case_type(case_type)
-    cases.find_by(case_type: case_type)
+  def criteria
+    context.params
   end
 end
 
