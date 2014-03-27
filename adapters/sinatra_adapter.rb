@@ -7,17 +7,17 @@ class SinatraAdapter
   end
 
   def params
-    sinatra_app.request.params
+    sinatra_app.params.except("captures", "splat")
   end
 
-  def success(content)
+  def success(content = {})
     status(200)
     json_body(content)
 
     return_nil_so_sinatra_does_not_double_render
   end
 
-  def created(content = "")
+  def created(content = {})
     status(201)
     json_body(content)
 

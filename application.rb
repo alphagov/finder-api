@@ -55,7 +55,7 @@ class Application
   )
 
   def cases_repository
-    ElasticSearchRepository.new(es_http_client, persistence_namespace, finder_type)
+    ElasticSearchRepository.new(es_http_client, persistence_namespace)
   end
 
   def elastic_search_translator

@@ -17,11 +17,11 @@ class FinderApi < Sinatra::Application
     sinatra_adapter.success(schema.to_h)
   end
 
-  get '/finders/:slug/documents.json' do
+  get '/finders/:finder_type/documents.json' do
     app.find_case(sinatra_adapter)
   end
 
-  post '/finders/:slug' do
+  put '/finders/:finder_type/:slug' do
     app.register_case(sinatra_adapter)
   end
 

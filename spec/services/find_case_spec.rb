@@ -10,7 +10,8 @@ describe FindCase do
   let(:cases_repository)  { double(:cases_repository, :find_by => matching_cases) }
   let(:case_formatter)    { double(:case_formatter, :call => formatted_case) }
   let(:context)           { double(:context, success: nil, params: params) }
-  let(:params)            { {} }
+  let(:params)            { { "finder_type" => finder_type } }
+  let(:finder_type)       { "cma-cases" }
   let(:matching_cases)    { [matching_case] }
   let(:matching_case)     { double(:matching_case) }
   let(:formatted_case)    { double(:formatted_case, :to_h => case_as_a_hash) }
@@ -27,7 +28,7 @@ describe FindCase do
       it "delegates search to the cases repository" do
         service.call
 
-        expect(cases_repository).to have_received(:find_by).with(criteria)
+        expect(cases_repository).to have_received(:find_by).with(finder_type, criteria)
       end
 
       it "formats the matching cases" do

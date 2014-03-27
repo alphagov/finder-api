@@ -2,9 +2,9 @@ Given(/^there no are registered documents$/) do
   clear_elastic_search
 end
 
-When(/^I POST "(.*?)" with the following case data$/) do |path, case_json|
+When(/^I PUT "(.*?)" with the following case data$/) do |path, case_json|
   @new_case_data = MultiJson.load(case_json)
-  @response = post(path, { case: case_json })
+  @response = put(path, { case: case_json })
 
   force_elastic_search_consistency
 end

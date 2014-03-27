@@ -1,15 +1,15 @@
 Given(/^there are registered documents$/) do
-  responses = post_all_documents
+  responses = put_all_documents
 
-  expect(responses.map(&:status).uniq).to eq([201])
+  expect(responses.map(&:status).uniq).to eq([200])
 
   force_elastic_search_consistency
 end
 
 Given(/^there are no registered "(.*?)" documents$/) do |case_type|
-  responses = post_all_documents_excluding( "case_type" => case_type )
+  responses = put_all_documents_excluding( "case_type" => case_type )
 
-  expect(responses.map(&:status).uniq).to eq([201])
+  expect(responses.map(&:status).uniq).to eq([200])
 
   force_elastic_search_consistency
 end

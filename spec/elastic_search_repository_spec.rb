@@ -7,7 +7,6 @@ describe ElasticSearchRepository do
     ElasticSearchRepository.new(
       http_client,
       namespace,
-      finder_type,
     )
   }
 
@@ -39,14 +38,14 @@ describe ElasticSearchRepository do
     end
 
     it "POSTs to the ES search endpoint" do
-      repo.find_by(criteria)
+      repo.find_by(finder_type, criteria)
 
       expect(http_client).to have_received(:post)
-        .with("/#{namespace}/_search", anything)
+        .with("/#{namespace}/#{finder_type}/_search", anything)
     end
 
     it "returns the results unwrapping the extraneous ES fields" do
-      expect(repo.find_by(criteria)).to eq([search_result])
+      expect(repo.find_by(finder_type, criteria)).to eq([search_result])
     end
 
     context "when the criteria is a single string match" do
@@ -71,7 +70,7 @@ describe ElasticSearchRepository do
       }
 
       it "translates the criteria hash into ES compatible params" do
-        repo.find_by(criteria)
+        repo.find_by(finder_type, criteria)
 
         expect(http_client).to have_received(:post)
           .with(anything, MultiJson.dump(es_term_query))
@@ -109,7 +108,7 @@ describe ElasticSearchRepository do
       }
 
       it "translates the criteria hash into ES compatible range query" do
-        repo.find_by(criteria)
+        repo.find_by(finder_type, criteria)
 
         expect(http_client).to have_received(:post)
           .with(anything, MultiJson.dump(es_range_query))

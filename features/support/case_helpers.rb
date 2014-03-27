@@ -2,18 +2,14 @@ module CaseHelpers
 
   def consumer_open
     {
+      "slug" => "cma-cases/investigation-into-the-distribution-of-road-fuels-in-parts-of-scotland",
       "title" => "Investigation into the distribution of road fuels in parts of Scotland",
-      "original_url" => "http://oft.gov.uk/OFTwork/oft-current-cases/competition-case-list-2013/scottish-road-fuels",
-      "sector" => "distribution-and-service-industries",
-      "original_urls" => [
-        "http =>//oft.gov.uk/OFTwork/oft-current-cases/competition-case-list-2013/scottish-road-fuels",
-        "http =>//oft.gov.uk/OFTwork/competition-act-and-cartels/ca98-current/scottish-road-fuels/"
-      ],
       "summary" => "In January 2013, the OFT launched a formal investigation into the distribution of road fuels in the Western Isles of Scotland by GB Oils Limited ('GB Oils'). The investigation is under Chapter II of the Competition Act 1998 and relates to a suspected exclusionary abuse of a dominant position in the relevant market.",
       "body" => "#  Investigation into the distribution of road fuels in parts of Scotland \n\n\n\n**Case opened:** January 2013  \n**Case References**\\: MP-SIP/0034/\n\n## Summary of work\n\nIn January 2013, the OFT launched a formal investigation into the\ndistribution of road fuels in the Western Isles of Scotland by GB Oils\nLimited (\\'GB Oils\\'). Since then the OFT has taken the decision to\ncontinue with the investigation and also to extend it to cover certain\nmatters in  the Shetland Islands. The investigation is under Chapter II\nof the Competition Act 1998 and relates to a suspected exclusionary\nabuses of a dominant position in the relevant market.\n\nOn 27 September 2013, GB Oils\\' name was changed to Certas Energy UK\nLimited (\\'Certas\\').\n\nThe subject matter of the investigation concerns the contractual\narrangements for wholesale supply of road fuels in the Western Isles\noffered by GB Oils/Certas (where applicable trading under the name\nScottish Fuels or through one of its group companies), the rebates paid\nto filling station customers in the Western Isles by GB Oils/Certas and\nany other payments that may have been made to filling station customers\nin the Western Isles by GB Oils/Certas.\n\nThe current investigation does not relate to excessive pricing and has\nnot been prompted by the OFT\\'s previous review of pricing, [Petrol and\nDiesel Pricing in the Scottish\nIslands](/OFTwork/markets-work/othermarketswork/scottishfuelpricing/).\n\n\nThis case is at an early stage and no assumption should be made that\nthere has been an infringement of competition law.\n\n## Case timetable\n\nFirst published: 18 January 2013\n\n|  **Milestone** | ** Date** |\n| Investigation opened | 8 January 2013 (actual) |\n| First Stop/Go Decision | April 2013  \n (actual) |\n| Further investigation: information gathering, including issuance of formal or informal information requests and parties\\' responses | May 2013 -June 2013 (actual) |\n| OFT analysis and review of parties\\' responses to information requests | June 2013- July 2013 (actual) |\n| Decision to proceed with investigation | July 2013  \n (actual) |\n| Further analysis and information gathering | July -Sept 2013 (actual) |\n| Decision to proceed with investigation | October 2013 (actual)  |\n| Investigation outcome (issue of Statement of Objections; case closure - See [Procedural Guidance](/shared_oft/policy/OFT1263rev) (pdf 876kb) | By end March 2014 (estimate) |\n\n   \n  \n \n\n \n\n \n\n \n\n \n\n \n\n \n\n \n\n \n\n \n\n \n\n \n\n \n\n \n\n \n\n**Notes**\n\n* The OFT has not reached a view as to whether there is sufficient\n  evidence of infringement of competition law for it to issue a\n  Statement of Objections to any of the parties under investigation. Not\n  all cases result in the OFT issuing a Statement of Objections.\n* If the OFT issues a Statement of Objections, it will provide the\n  addressee(s) of that Statement of Objections with an opportunity to\n  make written and oral representations. Further detail of the OFT\\'s\n  Procedures in Competition Act cases is available here: Procedural\n  Guidance. \n* Changes to the timing of original entries in the case timetable will\n  be made where the estimated timing in the original timetable changes.\n\n## Team Leader\n\nBrian Jackson (020 7211 8446,\n[brian.jackson@oft.gsi.gov.uk](mailto:brian.jackson@oft.gsi.gov.uk))\n\n\n## Project Director\n\nJames Macbeth (020 7211 8958,\n[james.macbeth@oft.gsi.gov.uk](mailto:james.macbeth@oft.gsi.gov.uk\n\"james.macbeth@oft.gsi.gov.uk\"))\n\n\n## Senior Responsible Officer\n\nAnn Pope (020 7211 8786,\n[ann.pope@oft.gsi.gov.uk](mailto:ann.pope@oft.gsi.gov.uk))\n\n\n## Media enquiries\n\nAny media enquiries should be directed to a member of our [Press\nOffice](/news-and-updates/)\n\n\n   \n  \n  \n",
       "opened_date" => "2006-7-14",
       "case_type" => "ca98-and-civil-cartels",
       "case_state" => "open",
+      "market_sector" => "distribution-and-service-industries",
     }
   end
 
@@ -55,22 +51,27 @@ module CaseHelpers
     ]
   end
 
-  def post_new_document(document_attributes)
-    post("/finders/cma-cases", case: document_attributes)
+  def put_new_document(slug, document_attributes)
+    put("/finders/#{slug}", case: document_attributes)
   end
 
-  def post_all_documents
-    resonses = all_documents
-      .map { |d| MultiJson.dump(d) }
-      .map { |d| post_new_document(d) }
+  def put_all_documents
+    responses = all_documents
+      .map { |d| [ d.fetch("slug"), d ] }
+      .map { |(slug, doc)| [slug, MultiJson.dump(doc)] }
+      .map { |(slug, doc)| put_new_document(slug, doc) }
   end
 
-  def post_all_documents_excluding(criteria)
-    resonses = all_documents
-      .reject { |d|
-        criteria.all? { |k, v| d[k] == v }
-      }
-      .map { |d| MultiJson.dump(d) }
-      .map { |d| post_new_document(d) }
+  def put_all_documents_excluding(criteria)
+    responses = put_documents(
+      all_documents.reject { |d| criteria.all? { |k, v| d[k] == v } }
+    )
+  end
+
+  def put_documents(docs)
+    docs
+      .map { |d| [ d.fetch("slug"), d ] }
+      .map { |(slug, doc)| [slug, MultiJson.dump(doc)] }
+      .map { |(slug, doc)| put_new_document(slug, doc) }
   end
 end
