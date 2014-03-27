@@ -10,7 +10,7 @@ end
 
 Given(/^a new schema file has been added$/) do
   @schema_file = create_schema_file(%|{
-    "slug": "cma-cases-test",
+    "slug": "cma-cases",
     "facets": [
       {
         "key": "case_type",

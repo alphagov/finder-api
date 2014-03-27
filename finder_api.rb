@@ -6,19 +6,37 @@ Dir["#{File.dirname(__FILE__)}/config/initializers/*.rb"].each do |path|
   require path
 end
 
-require 'schema_registry'
+require 'application'
+THE_APPLICATION ||= Application.new(ENV)
+require 'adapters/sinatra_adapter'
 
 class FinderApi < Sinatra::Application
 
   get '/:slug.json' do |slug|
-    MultiJson.dump(SchemaRegistry.new.get(slug))
+    schema = app.send(:schemas).fetch(slug)
+    sinatra_adapter.success(schema.to_h)
   end
 
-  get '/finders/:slug/documents.json' do
-    matched_cases = params['case_type'] ? cases_for_case_type(params['case_type']) : cases
+  get '/finders/:finder_type/documents.json' do
+    app.find_case(sinatra_adapter)
+  end
 
-    content_type :json
-    json_for_cases(matched_cases)
+  put '/finders/:finder_type/:slug' do
+    app.register_case(sinatra_adapter)
+  end
+
+  def initialize(*args, &block)
+    super
+
+    app.initialize_persistence
+  end
+
+  def app
+    THE_APPLICATION
+  end
+
+  def sinatra_adapter
+    SinatraAdapter.new(self)
   end
 
   def json_for_cases(cases)
@@ -28,25 +46,20 @@ class FinderApi < Sinatra::Application
     }.to_json
   end
 
-  def cases_for_case_type(case_type)
-    cases.select do |case_hash|
-      case_type_metadata = case_hash['metadata'].find do |meta|
-        meta['name'] == 'case_type'
-      end
+end
 
-      case_type_metadata['value'] == case_type
-    end
+# This prevents the all too common issue of a request for JSON sending back a
+# HTML web page with the error info on.
+# TODO: Send PR to fix this in Sinatra and remove
+Sinatra::ShowExceptions.class_eval do
+  def prefers_plain_text?(env)
+    !client_accepts_html?(env)
   end
 
-  def cases
-    @cases ||= case_files.map do |filename|
-      JSON.load(File.new(filename))
-    end
-  end
+  private
 
-  def case_files
-    Dir.foreach('cases').select { |x| x =~ /\.json\Z/ }.map do |filename|
-      "cases/#{filename}"
-    end
+  def client_accepts_html?(env)
+    env['HTTP_ACCEPT'].to_s.include?('text/html')
   end
 end
+
