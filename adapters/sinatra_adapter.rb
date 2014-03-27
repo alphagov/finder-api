@@ -6,6 +6,10 @@ class SinatraAdapter
     @sinatra_app = sinatra_app
   end
 
+  def params
+    sinatra_app.request.params
+  end
+
   def success(content)
     status(200)
     json_body(content)
@@ -24,7 +28,7 @@ class SinatraAdapter
 
   attr_reader :sinatra_app
 
-  def_delegators :sinatra_app, :status, :params
+  def_delegators :sinatra_app, :status
 
   def json_body(content)
     sinatra_app.content_type :json
