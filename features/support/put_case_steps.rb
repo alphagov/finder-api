@@ -4,7 +4,7 @@ end
 
 When(/^I PUT "(.*?)" with the following case data$/) do |path, case_json|
   @new_case_data = MultiJson.load(case_json)
-  @response = put(path, { case: case_json })
+  @response = put(path, { document: case_json })
 
   force_elastic_search_consistency
 end

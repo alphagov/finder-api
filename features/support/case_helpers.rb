@@ -52,7 +52,7 @@ module CaseHelpers
   end
 
   def put_new_document(slug, document_attributes)
-    put("/finders/#{slug}", case: document_attributes)
+    put("/finders/#{slug}", document: document_attributes)
   end
 
   def put_all_documents

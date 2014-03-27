@@ -27,6 +27,6 @@ class RegisterCase
   end
 
   def document_data
-    context.params.fetch("case")
+    context.params.fetch("document")
   end
 end
