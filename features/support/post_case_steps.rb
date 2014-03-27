@@ -15,10 +15,9 @@ end
 
 Then(/^the case eventually shows up in search results$/) do
   # TODO: search by title?
-  @response = get("/finders/cma-cases/documents.json?case_type=markets")
+  @response = get("/finders/cma-cases/documents.json?case_type=mergers")
   expect(@response.status).to eq(200)
 
-  # TODO: use faraday in test mode and have it JSON parse
   parsed_body = MultiJson.load(@response.body)
   returned_case = parsed_body.fetch("results").first
 

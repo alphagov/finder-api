@@ -3,9 +3,9 @@ Feature: GET filtered cases
   I want to be able to get case data filtered by type
   So that I can present them to my users
 
-  Scenario: Request all Criminal Cartel CMA cases
+  Scenario: Request all CMA "Mergers" cases
     Given there are registered documents
-    When I GET "/finders/cma-cases/documents.json?case_type=review-of-orders-and-undertakings"
+    When I GET "/finders/cma-cases/documents.json?case_type[]=mergers"
     Then I receive the following response
     """
       {
@@ -38,8 +38,22 @@ Feature: GET filtered cases
       }
     """
 
-  Scenario: filter by opened date
-  Scenario: filter by closed date
-  Scenario: filter by case state
-  Scenario: filter by market sector
-  Scenario: filter by outcome type
+  Scenario: No Mergers documents available
+   Given there are no registered "mergers" documents
+    When I GET "/finders/cma-cases/documents.json?case_type=mergers"
+    Then I receive the following response
+    """
+      {
+       "results": []
+      }
+    """
+
+  Scenario: Filter by opened date
+    Given there are registered documents
+    When I GET "/finders/cma-cases/documents.json?opened_date=2006"
+    Then I receive all documents with an opened date in "2006"
+
+  Scenario: Filter by single values over mutiple fields
+    Given there are registered documents
+    When I GET "/finders/cma-cases/documents.json?outcome_type=ca98-infringement-chapter-i&case_type=closed"
+    Then I receive all "closed" documents with outcome "ca98-infringement-chapter-i"
