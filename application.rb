@@ -22,7 +22,7 @@ class Application
     @schemas_glob = schemas_glob
   end
 
-  def find_case(context)
+  def find_cases(context)
     FindCase.new(
       cases_repository,
       case_presenter,

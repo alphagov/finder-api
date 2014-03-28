@@ -18,7 +18,7 @@ class FinderApi < Sinatra::Application
   end
 
   get '/finders/:finder_type/documents.json' do
-    app.find_case(sinatra_adapter)
+    app.find_cases(sinatra_adapter)
   end
 
   put '/finders/:finder_type/:slug' do
