@@ -37,6 +37,7 @@ GEM
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
       rb-kqueue (>= 0.2)
+    logstash-event (1.2.02)
     lrucache (0.1.4)
       PriorityQueue (~> 0.1.2)
     method_source (0.8.2)
@@ -56,6 +57,9 @@ GEM
       method_source (~> 0.8)
       slop (~> 3.4)
     rack (1.5.2)
+    rack-logstasher (0.0.3)
+      logstash-event
+      rack
     rack-protection (1.5.2)
       rack
     rack-test (0.6.2)
@@ -102,6 +106,7 @@ DEPENDENCIES
   mr-sparkle
   multi_json (= 1.8.4)
   pry
+  rack-logstasher (= 0.0.3)
   rack-test (= 0.6.2)
   rake
   rspec (= 2.14.1)
