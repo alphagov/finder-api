@@ -62,4 +62,3 @@ Sinatra::ShowExceptions.class_eval do
     env['HTTP_ACCEPT'].to_s.include?('text/html')
   end
 end
-
