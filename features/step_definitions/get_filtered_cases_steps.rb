@@ -6,6 +6,23 @@ Given(/^there are registered documents$/) do
   force_elastic_search_consistency
 end
 
+Given(/^there are (\d+) registered documents$/) do |number_of_docs_to_create|
+  number_of_docs_to_create.to_i.times.each do |n|
+    put_new_document("cma-cases/a-document-#{n}", MultiJson.dump({
+      "slug" => "cma-cases/a-document-#{n}",
+      "title" => "Title #{n}",
+      "summary" => "Summary #{n}",
+      "body" => "Body #{n}",
+      "opened_date" => "2006-7-14",
+      "case_type" => "ca98-and-civil-cartels",
+      "case_state" => "open",
+      "market_sector" => "distribution-and-service-industries",
+    }))
+  end
+
+  force_elastic_search_consistency
+end
+
 Given(/^there are no registered "(.*?)" documents$/) do |case_type|
   responses = put_all_documents_excluding( "case_type" => case_type )
 
@@ -63,4 +80,9 @@ Then(/^I receive documents opened in "(.*?)" and "(.*?)"$/) do |year_one, year_t
 
   dates = cases.map { |c| c.fetch("opened_date") }
   expect(dates.all? { |d| d.include?(year_one) || d.include?(year_two) }).to be_true
+end
+
+Then(/^I receive (\d+) documents$/) do |number_of_docs_to_receive|
+  cases = MultiJson.load(@response.body).fetch("results")
+  expect(cases).to have(number_of_docs_to_receive.to_i).items
 end
