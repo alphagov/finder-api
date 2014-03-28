@@ -67,3 +67,8 @@ Feature: GET filtered cases
     Given there are registered documents
     When I GET "/finders/cma-cases/documents.json?opened_date[]=2003&opened_date[]=2006"
     Then I receive documents opened in "2003" and "2006"
+
+  Scenario: More than 10 documents are in the system
+    Given there are 11 registered documents
+    When I GET "/finders/cma-cases/documents.json"
+    Then I receive 11 documents

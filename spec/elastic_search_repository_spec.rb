@@ -41,7 +41,7 @@ describe ElasticSearchRepository do
       repo.find_by(finder_type, criteria)
 
       expect(http_client).to have_received(:post)
-        .with("/#{namespace}/#{finder_type}/_search", anything)
+        .with("/#{namespace}/#{finder_type}/_search?size=1000", anything)
     end
 
     it "returns the results unwrapping the extraneous ES fields" do

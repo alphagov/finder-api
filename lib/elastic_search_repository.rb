@@ -13,7 +13,7 @@ class ElasticSearchRepository
     query = criteria_to_es_format(criteria)
 
     # TODO: refactor into an adapter
-    post("/#{namespace}/#{finder_type}/_search", query)
+    post("/#{namespace}/#{finder_type}/_search?size=1000", query)
       .body
       .fetch("hits")
       .fetch("hits")
