@@ -12,7 +12,7 @@ require 'adapters/sinatra_adapter'
 
 class FinderApi < Sinatra::Application
 
-  get '/:slug.json' do |slug|
+  get '/finders/:finder_type/schema.json' do |slug|
     schema = app.send(:schemas).fetch(slug)
     sinatra_adapter.success(schema.to_h)
   end

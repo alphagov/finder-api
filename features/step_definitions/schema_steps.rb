@@ -1,5 +1,5 @@
 When(/^I request the "(.*?)" schema$/) do |slug|
-  @response = get("/#{slug}.json")
+  @response = get("/finders/#{slug}/schema.json")
 end
 
 Then(/^I receive a JSON document describing "(.*?)"$/) do |slug|
