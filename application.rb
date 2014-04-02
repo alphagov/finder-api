@@ -9,6 +9,7 @@ require "presenters/case_presenter"
 require "elastic_search_repository"
 require "elastic_search_registerer"
 require "elastic_search_mapping"
+require "elastic_search_query"
 require "finder_schema"
 require "schema_registry"
 require "adapters/null_adapter"
@@ -55,7 +56,17 @@ class Application
   )
 
   def cases_repository
-    ElasticSearchRepository.new(es_http_client, persistence_namespace)
+    ElasticSearchRepository.new(
+      es_http_client,
+      es_query_builder,
+      persistence_namespace,
+    )
+  end
+
+  def es_query_builder
+    ->(criteria) {
+      ElasticSearchQuery.new(criteria).to_h
+    }
   end
 
   def elastic_search_translator
@@ -69,6 +80,7 @@ class Application
   def es_http_client
     Faraday.new(:url => @elastic_search_base_uri) do |conn|
       conn.response :json
+      conn.request :json
 
       conn.adapter Faraday.default_adapter
     end
