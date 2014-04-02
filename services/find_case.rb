@@ -7,7 +7,6 @@ class FindCase
 
   def call
     context.success(search_results)
-    nil
   end
 
   private
