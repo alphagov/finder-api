@@ -72,3 +72,8 @@ Feature: GET filtered cases
     Given there are 11 registered documents
     When I GET "/finders/cma-cases/documents.json"
     Then I receive 11 documents
+
+  Scenario: Keyword search
+    Given there are registered documents
+    When I GET "/finders/cma-cases/documents.json?keywords=fuels"
+    Then I receive all documents with a body or summary containing the keywords

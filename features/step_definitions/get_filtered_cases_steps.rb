@@ -32,6 +32,7 @@ Given(/^there are no registered "(.*?)" documents$/) do |case_type|
 end
 
 When(/^I GET "(.*?)"$/) do |path|
+  @path = path
   @response = get(path)
 end
 
@@ -85,4 +86,15 @@ end
 Then(/^I receive (\d+) documents$/) do |number_of_docs_to_receive|
   cases = MultiJson.load(@response.body).fetch("results")
   expect(cases).to have(number_of_docs_to_receive.to_i).items
+end
+
+Then(/^I receive all documents with a body or summary containing the keywords$/) do
+  keyword = Rack::Utils.parse_nested_query(URI.parse(@path).query).fetch("keywords")
+
+  documents = MultiJson.load(@response.body).fetch("results")
+
+  expect(documents.size).to eq(2)
+
+  expect(documents[0].fetch("summary")).to include(keyword)
+  expect(documents[1].fetch("summary")).to include(keyword)
 end
