@@ -19,11 +19,11 @@ class ElasticSearchQuery
 
     criteria
       .except("keywords")
-      .each do |k, v|
-        if k.to_s.end_with?("_date")
-          @date_criteria.merge!( k => v )
+      .each do |key, value|
+        if key.to_s.end_with?("_date")
+          @date_criteria[key] = value
         else
-          @term_criteria.merge!( k => v )
+          @term_criteria[key] = value
         end
       end
   end
@@ -47,11 +47,7 @@ class ElasticSearchQuery
   end
 
   def filters
-    if date_filters.empty?
-      term_filters
-    else
-      term_filters + date_filters
-    end
+    term_filters + date_filters
   end
 
   def term_filters
