@@ -73,6 +73,11 @@ Feature: GET filtered cases
     When I GET "/finders/cma-cases/documents.json"
     Then I receive 11 documents
 
+  Scenario: Keyword search for exact match
+    Given there are registered documents
+    When I GET "/finders/cma-cases/documents.json?keywords=fuels"
+    Then I receive all documents with a body or summary containing the keywords
+
   Scenario: Keyword search with stemming
     Given there are registered documents
     When I GET "/finders/cma-cases/documents.json?keywords=fuel"
