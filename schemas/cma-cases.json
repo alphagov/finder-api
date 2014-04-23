@@ -40,8 +40,8 @@
       "include_blank": false,
       "preposition": "about",
       "allowed_values": [
-        {"label": "Agriculture, environment and natural resources", "value": "agriculture-environment-and-natural-resources"},
         {"label": "Aerospace", "value": "aerospace"},
+        {"label": "Agriculture, environment and natural resources", "value": "agriculture-environment-and-natural-resources"},
         {"label": "Building and construction", "value": "building-and-construction"},
         {"label": "Chemicals", "value": "chemicals"},
         {"label": "Clothing, footwear and fashion", "value": "clothing-footwear-and-fashion"},
