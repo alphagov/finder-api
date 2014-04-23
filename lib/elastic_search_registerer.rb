@@ -7,7 +7,7 @@ class ElasticSearchRegisterer
   end
 
   def store_map(mapping)
-    http_client.put(index_path)
+    http_client.put(index_path, index_settings)
     http_client.put(mapping_path(mapping), json_mapping(mapping))
   end
 
@@ -24,5 +24,27 @@ private
 
   def json_mapping(mapping)
     MultiJson.dump(mapping.to_h)
+  end
+
+  def index_settings
+    {
+      "settings" => {
+        "analysis" => {
+          "analyzer" => {
+            "default" => {
+              "type" => "custom",
+              "tokenizer" => "standard",
+              "filter" => %w(standard lowercase stemmer_english),
+            },
+          },
+          "filter" => {
+            "stemmer_english" => {
+              "type" => "stemmer",
+              "name" => "english",
+            },
+          }
+        }
+      }
+    }
   end
 end

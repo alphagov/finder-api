@@ -24,7 +24,8 @@ describe ElasticSearchRegisterer do
 
     it "creates the index" do
       registerer.store_map(mapping)
-      expect(http_client).to have_received(:put).with(index_path)
+      expect(http_client).to have_received(:put)
+        .with(index_path, hash_including("settings"))
     end
 
     it "sends the json-encoded mapping to ES" do
