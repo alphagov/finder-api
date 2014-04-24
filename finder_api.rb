@@ -25,6 +25,10 @@ class FinderApi < Sinatra::Application
     app.register_case(sinatra_adapter)
   end
 
+  delete '/finders/:finder_type/:slug' do
+    app.delete_case(sinatra_adapter)
+  end
+
   def initialize(*args, &block)
     super
 

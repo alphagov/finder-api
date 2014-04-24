@@ -38,6 +38,13 @@ class Application
     ).call
   end
 
+  def delete_case(context)
+    DeleteCase.new(
+      cases_repository,
+      context,
+    ).call
+  end
+
   def initialize_persistence(context = NullAdapter.new)
     RegisterSchemaWithElasticSearch.new(
       schema_registerer,

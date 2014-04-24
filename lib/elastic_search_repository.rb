@@ -13,7 +13,7 @@ class ElasticSearchRepository
     query = query_builder.call(criteria)
 
     # TODO: refactor into an adapter
-    post("/#{namespace}/#{finder_type}/_search?size=1000", query)
+    http_client.post("/#{namespace}/#{finder_type}/_search?size=1000", query)
       .body
       .fetch("hits")
       .fetch("hits")
@@ -21,12 +21,14 @@ class ElasticSearchRepository
   end
 
   def store(slug, document_data)
-    put("/#{namespace}/#{slug}", document_data)
+    http_client.put("/#{namespace}/#{slug}", document_data)
+  end
+
+  def delete(slug)
+    http_client.delete("/#{namespace}/#{slug}")
   end
 
   private
 
   attr_reader :http_client, :query_builder, :namespace
-
-  def_delegators :http_client, :post, :put
 end
