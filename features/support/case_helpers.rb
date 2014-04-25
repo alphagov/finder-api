@@ -10,6 +10,7 @@ module CaseHelpers
       "case_type" => "ca98-and-civil-cartels",
       "case_state" => "open",
       "market_sector" => "distribution-and-service-industries",
+      "updated_at" => "2014-04-15",
     }
   end
 
@@ -24,7 +25,8 @@ module CaseHelpers
       "case_type" => "mergers",
       "case_state" => "closed",
       "market_sector" => "pharmaceuticals",
-      "outcome_type" => "mergers-phase-1-found-not-to-qualify"
+      "outcome_type" => "mergers-phase-1-found-not-to-qualify",
+      "updated_at" => "2014-04-15",
     }
   end
 
@@ -40,6 +42,7 @@ module CaseHelpers
       "case_state" => "closed",
       "market_sector" => "distribution-and-service-industries",
       "outcome_type" => "ca98-infringement-chapter-i",
+      "updated_at" => "2014-04-15",
     }
   end
 

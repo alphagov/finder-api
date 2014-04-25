@@ -19,6 +19,13 @@ describe ElasticSearchQuery do
 
       let(:es_single_term_query) {
         {
+          sort: [
+            {
+              updated_at: {
+                order: :desc
+              }
+            }
+          ],
           filter: {
             and: {
               filters: [
@@ -106,6 +113,13 @@ describe ElasticSearchQuery do
 
       let(:es_multiple_range_query) {
         {
+          sort: [
+            {
+              updated_at: {
+                order: :desc
+              }
+            }
+          ],
           filter: {
             and: {
               filters: [

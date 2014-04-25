@@ -17,7 +17,8 @@ Feature: PUT new cases
         "case_type": "mergers",
         "case_state": "closed",
         "market_sector": "pharmaceuticals",
-        "outcome_type": "ca98-infringement-chapter-i"
+        "outcome_type": "ca98-infringement-chapter-i",
+        "updated_at": "2014-04-15"
       }
     """
     Then I receive an empty 200 response
