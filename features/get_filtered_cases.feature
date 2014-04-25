@@ -16,6 +16,7 @@ Feature: GET filtered cases
             "opened_date": "2005-12-30",
             "closed_date": "2006-03-01",
             "summary": "Inquiry into the Healthcorp / Druginc merger",
+            "updated_at": "2014-04-15",
 
             "market_sector": {
               "value": "pharmaceuticals",

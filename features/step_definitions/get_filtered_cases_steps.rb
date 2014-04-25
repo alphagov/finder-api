@@ -17,6 +17,7 @@ Given(/^there are (\d+) registered documents$/) do |number_of_docs_to_create|
       "case_type" => "ca98-and-civil-cartels",
       "case_state" => "open",
       "market_sector" => "distribution-and-service-industries",
+      "updated_at" => "2014-04-15",
     }))
   end
 

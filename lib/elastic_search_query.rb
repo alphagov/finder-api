@@ -30,7 +30,11 @@ class ElasticSearchQuery
 
   def match_query
     if keywords.empty?
-      {}
+      {
+        sort: [
+          { updated_at: { order: :desc }}
+        ]
+      }
     else
       {
         query: {
