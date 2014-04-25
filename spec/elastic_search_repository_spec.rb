@@ -11,7 +11,7 @@ describe ElasticSearchRepository do
     )
   }
 
-  let(:http_client)      { double(:http_client, put: nil, post: nil) }
+  let(:http_client)      { double(:http_client, put: nil, post: nil, delete: nil) }
   let(:namespace)        { "test-namespace" }
   let(:query_builder)    { double(:query_builder) }
 
@@ -69,4 +69,16 @@ describe ElasticSearchRepository do
         .with("/#{namespace}/#{slug}", document_data)
     end
   end
+
+  describe "#delete" do
+    let(:slug) { "document_finder_type/document_title_slug" }
+
+    it "DELETEs the document data to the ES endpoint" do
+      repo.delete(slug)
+
+      expect(http_client).to have_received(:delete)
+        .with("/#{namespace}/#{slug}")
+    end
+  end
+
 end
