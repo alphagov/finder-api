@@ -9,12 +9,14 @@ class ElasticSearchRegisterer
   def store_map(mapping)
     http_client.put(mapping_path(mapping), json_mapping(mapping))
   rescue Faraday::Error::ClientError => e
+    Logger.new("log/production.log").error(e.response.inspect)
     fail e unless e.response.fetch(:body).match(/already exists/i)
   end
 
   def create_index
     http_client.put(index_path, index_settings)
   rescue Faraday::Error::ClientError => e
+    Logger.new("log/production.log").error(e.response.inspect)
     fail e unless e.response.fetch(:body).match(/already exists/i)
   end
 

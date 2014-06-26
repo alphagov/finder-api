@@ -5,7 +5,12 @@ class RegisterCase
   end
 
   def call
-    cases_repository.store(storage_id, document_data)
+    logger = Logger.new("log/production.log")
+    logger.info("storage_id: #{storage_id}")
+    logger.info("document_data: #{document_data.inspect}")
+
+    response = cases_repository.store(storage_id, document_data)
+    logger.info("response: #{response.inspect}")
 
     context.success
   end

@@ -22,6 +22,9 @@ class ElasticSearchRepository
 
   def store(slug, document_data)
     http_client.put("/#{namespace}/#{slug}", document_data)
+  rescue Faraday::Error::ClientError => e
+    Logger.new("log/production.log").error(e.response.inspect)
+    raise
   end
 
   def delete(slug)
