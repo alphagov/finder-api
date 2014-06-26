@@ -88,6 +88,7 @@ class Application
     Faraday.new(:url => @elastic_search_base_uri) do |conn|
       conn.response :json
       conn.request :json
+      conn.use Faraday::Response::RaiseError
 
       conn.adapter Faraday.default_adapter
     end
