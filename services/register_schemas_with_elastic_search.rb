@@ -1,4 +1,4 @@
-class RegisterSchemaWithElasticSearch
+class RegisterSchemasWithElasticSearch
   def initialize(registerer, elastic_search_translator, schemas, context)
     @registerer = registerer
     @elastic_search_translator = elastic_search_translator
@@ -7,11 +7,12 @@ class RegisterSchemaWithElasticSearch
   end
 
   def call
+    create_index
     schemas.each do |schema|
       register_schema(schema)
     end
 
-    context.success(message: "Scheamas successfully registered")
+    context.success(message: "Schemas successfully registered")
   end
 
   private
@@ -22,6 +23,10 @@ class RegisterSchemaWithElasticSearch
     :schemas,
     :context
   )
+
+  def create_index
+    registerer.create_index
+  end
 
   def register_schema(schema)
     registerer.store_map(translate_schema_to_mapping(schema))

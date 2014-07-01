@@ -16,21 +16,23 @@ describe ElasticSearchRegisterer do
       finder_slug: 'cma-cases'
     )
   }
+  let(:index_path) { "/#{namespace}" }
 
   describe "#store(elastic_search_mapping)" do
-    let(:index_path) { "/#{namespace}" }
     let(:mapping_path) { "#{index_path}/cma-cases/_mapping" }
     let(:json_mapping) { MultiJson.dump(mapping_hash) }
-
-    it "creates the index" do
-      registerer.store_map(mapping)
-      expect(http_client).to have_received(:put)
-        .with(index_path, hash_including("settings"))
-    end
 
     it "sends the json-encoded mapping to ES" do
       registerer.store_map(mapping)
       expect(http_client).to have_received(:put).with(mapping_path, json_mapping)
+    end
+  end
+
+  describe "#create_index" do
+    it "creates the index" do
+      registerer.create_index
+      expect(http_client).to have_received(:put)
+        .with(index_path, hash_including("settings"))
     end
   end
 end

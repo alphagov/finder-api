@@ -46,7 +46,7 @@ class Application
   end
 
   def initialize_persistence(context = NullAdapter.new)
-    RegisterSchemaWithElasticSearch.new(
+    RegisterSchemasWithElasticSearch.new(
       schema_registerer,
       elastic_search_translator,
       schemas.values,

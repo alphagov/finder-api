@@ -6,4 +6,4 @@ Feature: Registration with panopticon
 @stub_panopticon_registerer
 Scenario:
   When I run the panopticon:register rake task
-  Then the CMA Case finder is registered with panopticon
+  Then the finders have been registered with panopticon
