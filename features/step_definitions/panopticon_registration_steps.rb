@@ -6,6 +6,6 @@ When(/^I run the panopticon:register rake task$/) do
   @rake['panopticon:register'].invoke
 end
 
-Then(/^the CMA Case finder is registered with panopticon$/) do
-  expect(PanopticonRegisterer).to have_received(:register)
+Then(/^the finders have been registered with panopticon$/) do
+  expect(PanopticonRegisterer).to have_received(:register).twice
 end
