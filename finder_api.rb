@@ -18,15 +18,15 @@ class FinderApi < Sinatra::Application
   end
 
   get '/finders/:finder_type/documents.json' do
-    app.find_cases(sinatra_adapter)
+    app.find_documents(sinatra_adapter)
   end
 
   put '/finders/:finder_type/:slug' do
-    app.register_case(sinatra_adapter)
+    app.register_document(sinatra_adapter)
   end
 
   delete '/finders/:finder_type/:slug' do
-    app.delete_case(sinatra_adapter)
+    app.delete_document(sinatra_adapter)
   end
 
   def initialize(*args, &block)

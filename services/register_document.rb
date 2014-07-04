@@ -1,18 +1,18 @@
-class RegisterCase
-  def initialize(cases_repository, context)
-    @cases_repository = cases_repository
+class RegisterDocument
+  def initialize(repository, context)
+    @repository = repository
     @context = context
   end
 
   def call
-    cases_repository.store(storage_id, document_data)
+    repository.store(storage_id, document_data)
 
     context.success
   end
 
   private
 
-  attr_reader :cases_repository, :context
+  attr_reader :repository, :context
 
   def storage_id
     [finder_type, document_slug].join("/")

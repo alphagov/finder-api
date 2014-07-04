@@ -1,21 +1,21 @@
 require "core_ext"
 
-class CasePresenter
+class DocumentPresenter
 
-  def initialize(schema, case_data)
+  def initialize(schema, data)
     @schema = schema
-    @case_data = case_data
+    @data = data
   end
 
   def to_h
-    case_data
+    data
       .except(*exclude_fields)
       .merge(expanded_facets)
   end
 
   private
 
-  attr_reader :schema, :case_data
+  attr_reader :schema, :data
 
   def exclude_fields
     %w(
@@ -30,7 +30,7 @@ class CasePresenter
   end
 
   def expand_facet_value(facet_name)
-    value = case_data.fetch(facet_name)
+    value = data.fetch(facet_name)
     {
       "value" => value,
       "label" => schema.label_for(facet_name, value)
@@ -38,7 +38,7 @@ class CasePresenter
   end
 
   def expandable_facets
-    multi_select_field_names & case_data.keys
+    multi_select_field_names & data.keys
   end
 
   def multi_select_field_names

@@ -5,7 +5,7 @@ require "faraday"
 require 'faraday_middleware'
 
 require "core_ext"
-require "presenters/case_presenter"
+require "presenters/document_presenter"
 require "elastic_search_repository"
 require "elastic_search_registerer"
 require "elastic_search_mapping"
@@ -23,24 +23,24 @@ class Application
     @schemas_glob = schemas_glob
   end
 
-  def find_cases(context)
-    FindCase.new(
-      cases_repository,
-      case_presenter,
+  def find_documents(context)
+    FindDocument.new(
+      documents_repository,
+      document_presenter,
       context,
     ).call
   end
 
-  def register_case(context)
-    RegisterCase.new(
-      cases_repository,
+  def register_document(context)
+    RegisterDocument.new(
+      documents_repository,
       context,
     ).call
   end
 
-  def delete_case(context)
-    DeleteCase.new(
-      cases_repository,
+  def delete_document(context)
+    DeleteDocument.new(
+      documents_repository,
       context,
     ).call
   end
@@ -62,7 +62,7 @@ class Application
     :schemas_glob,
   )
 
-  def cases_repository
+  def documents_repository
     ElasticSearchRepository.new(
       es_http_client,
       es_query_builder,
@@ -94,13 +94,13 @@ class Application
     end
   end
 
-  def case_presenter
-    ->(case_data) {
-      CasePresenter.new(cma_schema, case_data)
+  def document_presenter
+    ->(document_data) {
+      DocumentPresenter.new(schema, document_data)
     }
   end
 
-  def cma_schema
+  def schema
     schemas.fetch(finder_type)
   end
 
