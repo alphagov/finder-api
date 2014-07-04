@@ -26,7 +26,7 @@ class Application
   def find_documents(context)
     FindDocument.new(
       documents_repository,
-      document_presenter,
+      document_presenter(context.params.fetch("finder_type")),
       context,
     ).call
   end
@@ -94,18 +94,14 @@ class Application
     end
   end
 
-  def document_presenter
+  def document_presenter(finder_type)
     ->(document_data) {
-      DocumentPresenter.new(schema, document_data)
+      DocumentPresenter.new(schema(finder_type), document_data)
     }
   end
 
-  def schema
+  def schema(finder_type)
     schemas.fetch(finder_type)
-  end
-
-  def finder_type
-    "cma-cases"
   end
 
   def schemas
