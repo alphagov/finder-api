@@ -1,20 +1,20 @@
 require "spec_helper"
 
-require "presenters/case_presenter"
+require "presenters/document_presenter"
 
-describe CasePresenter do
-  subject(:case_presenter) { CasePresenter.new(schema, case_data) }
+describe DocumentPresenter do
+  subject(:presenter) { DocumentPresenter.new(schema, data) }
 
-  let(:case_data) {
+  let(:data) {
     {
-      "title" => case_title,
+      "title" => title,
       "case_type" => case_type_value,
-      "body" => case_body,
+      "body" => body,
     }
   }
 
-  let(:case_body) { "## Case Body" }
-  let(:case_title) { "Heathcorp / Druginc merger inquiry" }
+  let(:body) { "## Case Body" }
+  let(:title) { "Heathcorp / Druginc merger inquiry" }
   let(:case_type_value) { "criminal-cartels" }
   let(:case_type_label) { "CA98 and civil cartels" }
 
@@ -31,11 +31,11 @@ describe CasePresenter do
 
   describe "#to_h" do
     it "directly presents normal fields" do
-      expect(case_presenter.to_h).to include( "title" => case_title )
+      expect(presenter.to_h).to include( "title" => title )
     end
 
     it "filters out the body field" do
-      expect(case_presenter.to_h).not_to have_key("body")
+      expect(presenter.to_h).not_to have_key("body")
     end
 
     it "expands multi-select fields to include the label and value" do
@@ -46,18 +46,18 @@ describe CasePresenter do
         }
       }
 
-      expect(case_presenter.to_h).to include( expected_case_type_data )
+      expect(presenter.to_h).to include( expected_case_type_data )
     end
 
     context "when the case data is missing a multi-select field" do
-      let(:case_data) {
+      let(:data) {
         {
-          "title" => case_title,
+          "title" => title,
         }
       }
 
       it "presents the available fields" do
-        expect(case_presenter.to_h).to include(case_data)
+        expect(presenter.to_h).to include(data)
       end
     end
   end
