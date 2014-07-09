@@ -3,6 +3,7 @@ namespace :panopticon do
   task :register do
     require "application"
     require 'panopticon_registerer'
+    require "config/initializers/elasticsearch.rb"
     require 'config/initializers/panopticon_api_credentials.rb'
 
     app = Application.new(ENV)
