@@ -23,6 +23,7 @@
       "include_blank": false,
       "allowed_values": [
         {"label": "Annual safety report", "value": "annual-safety-report"},
+        {"label": "Bulletin", "value": "bulletin"},
         {"label": "Correspondence investigation", "value": "correspondence-investigation"},
         {"label": "Field investigation", "value": "field-investigation"},
         {"label": "Foreign report", "value": "foreign-report"},
