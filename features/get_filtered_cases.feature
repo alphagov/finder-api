@@ -18,22 +18,22 @@ Feature: GET filtered cases
             "summary": "Inquiry into the Healthcorp / Druginc merger",
             "updated_at": "2014-04-15",
 
-            "market_sector": {
+            "market_sector": [{
               "value": "pharmaceuticals",
               "label": "Pharmaceuticals"
-            },
-            "case_type": {
+            }],
+            "case_type": [{
               "value": "mergers",
               "label": "Mergers"
-            },
-            "outcome_type": {
+            }],
+            "outcome_type": [{
               "value": "mergers-phase-1-found-not-to-qualify",
               "label": "Mergers - phase 1 found not to qualify"
-            },
-            "case_state": {
+            }],
+            "case_state": [{
               "value": "closed",
               "label": "Closed"
-            }
+            }]
           }
         ]
       }

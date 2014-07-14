@@ -40,10 +40,10 @@ describe DocumentPresenter do
 
     it "expands multi-select fields to include the label and value" do
       expected_case_type_data = {
-        "case_type" => {
+        "case_type" => [
           "label" => case_type_label,
           "value" => case_type_value,
-        }
+        ]
       }
 
       expect(presenter.to_h).to include( expected_case_type_data )

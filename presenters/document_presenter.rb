@@ -29,11 +29,12 @@ class DocumentPresenter
     end]
   end
 
-  def expand_facet_value(facet_name)
-    value = data.fetch(facet_name)
-    {
-      "value" => value,
-      "label" => schema.label_for(facet_name, value)
+  def expand_facet_value(facet_name) 
+    Array(data.fetch(facet_name)).map { |value|
+      {
+        "value" => value,
+        "label" => schema.label_for(facet_name, value)
+      }
     }
   end
 

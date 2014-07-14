@@ -14,9 +14,9 @@ Given(/^there are (\d+) registered documents$/) do |number_of_docs_to_create|
       "summary" => "Summary #{n}",
       "body" => "Body #{n}",
       "opened_date" => "2006-7-14",
-      "case_type" => "ca98-and-civil-cartels",
-      "case_state" => "open",
-      "market_sector" => "distribution-and-service-industries",
+      "case_type" => ["ca98-and-civil-cartels"],
+      "case_state" => ["open"],
+      "market_sector" => ["distribution-and-service-industries"],
       "updated_at" => "2014-04-15",
     }))
   end
@@ -25,7 +25,7 @@ Given(/^there are (\d+) registered documents$/) do |number_of_docs_to_create|
 end
 
 Given(/^there are no registered "(.*?)" documents$/) do |case_type|
-  responses = put_all_documents_excluding( "case_type" => case_type )
+  responses = put_all_documents_excluding( "case_type" => [case_type] )
 
   expect(responses.map(&:status).uniq).to eq([200])
 
@@ -58,11 +58,10 @@ Then(/^I receive all "(.*?)" documents with outcome "(.*?)"$/) do |case_state, o
   cases = MultiJson.load(@response.body).fetch("results")
 
   expect(cases).to have(1).item
-
-  states = cases.map { |c| c.fetch("case_state").fetch("value") }
+  states = cases.map { |c| c.fetch("case_state").map { |type| type.fetch("value") } }.flatten
   expect(states.all? { |state| state == case_state }).to be_true
 
-  outcomes = cases.map { |c| c.fetch("outcome_type").fetch("value") }
+  outcomes = cases.map { |c| c.fetch("outcome_type").map { |type| type.fetch("value") } }.flatten
   expect(outcomes.all? { |outcome| outcome == outcome_type }).to be_true
 end
 
@@ -71,7 +70,7 @@ Then(/^I receive documents with outcomes "(.*?)" and "(.*?)"$/) do |outcome_one,
 
   expect(cases).to have(2).items
 
-  outcomes = cases.map { |c| c.fetch("outcome_type").fetch("value") }
+  outcomes = cases.map { |c| c.fetch("outcome_type").map { |type| type.fetch("value") } }.flatten
   expect(outcomes.all? { |outcome| [outcome_one, outcome_two].include?(outcome) }).to be_true
 end
 
