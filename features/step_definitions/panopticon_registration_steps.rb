@@ -7,5 +7,15 @@ When(/^I run the panopticon:register rake task$/) do
 end
 
 Then(/^the finders have been registered with panopticon$/) do
-  expect(PanopticonRegisterer).to have_received(:register).twice
+  slugs = %w(
+    aaib-reports
+    cma-cases
+    international-development-funding
+  )
+
+  slugs.each do |slug|
+    expect(PanopticonRegisterer).to(
+      have_received(:register).with(hash_including("slug" => slug))
+    )
+  end
 end
