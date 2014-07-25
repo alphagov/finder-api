@@ -30,6 +30,27 @@
         {"label": "Formal report", "value": "formal-report"},
         {"label": "Special bulletin", "value": "special-bulletin"}
       ]
-    }
+    },
+    {
+      "key": "aircraft_type",
+      "elasticsearch_config": {
+        "type": "string",
+        "index": "analyzed"
+      }
+    },
+    {
+      "key": "location",
+      "elasticsearch_config": {
+        "type": "string",
+        "index": "analyzed"
+      }
+    },
+    {
+      "key": "registration",
+      "elasticsearch_config": {
+        "type": "string",
+        "index": "analyzed"
+      }
+    },
   ]
 }
