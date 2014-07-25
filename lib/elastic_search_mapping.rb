@@ -29,9 +29,11 @@ private
 
   def facet_properties
     facets.reduce({}) do |hash, facet|
+      config = facet.fetch("elasticsearch_config", {})
+
       hash.merge(facet.fetch("key") => {
-        'type' => 'string',
-        'index' => 'not_analyzed'
+        "type" => config.fetch("type", "string"),
+        "index" => config.fetch("index", "not_analyzed"),
       })
     end
   end
