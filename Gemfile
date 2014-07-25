@@ -12,6 +12,8 @@ gem 'faraday_middleware', '0.9.0'
 gem 'rack-logstasher', '0.0.3'
 
 group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
   gem 'mr-sparkle'
 end
 
