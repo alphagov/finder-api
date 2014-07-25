@@ -10,27 +10,40 @@ describe ElasticSearchMapping do
     MultiJson.load(File.read("spec/fixtures/schemas/cma-cases.json"))
   }
 
-  let(:facets) {
+  let(:default_facets) {
+    %w(
+      title
+      summary
+      body
+      updated_at
+    )
+  }
+
+  let(:format_facets) {
     ["case_type", "case_state", "market_sector", "outcome_type"]
+  }
+
+  let(:all_facets) {
+    default_facets + format_facets
   }
 
   describe "#to_h" do
     it "returns a mapping containing all facets" do
       mapping_properties = mapping.to_h.fetch("cma-cases").fetch("properties")
 
-      expect(mapping_properties.keys).to match_array(facets)
+      expect(mapping_properties.keys).to match_array(all_facets)
     end
 
-    it "maps all facets to string type (until we know more about the schema)" do
-      mapping_properties = mapping.to_h.fetch("cma-cases").fetch("properties")
+    it "sets format-specific facets to string type" do
+      mapping_properties = mapping.to_h.fetch("cma-cases").fetch("properties").slice(format_facets)
 
       mapping_properties.each do |_, attributes|
         expect(attributes['type']).to eq('string')
       end
     end
 
-    it "sets everything to not_analyzed (as we have no body fields)"do
-      mapping_properties = mapping.to_h.fetch("cma-cases").fetch("properties")
+    it "sets format-specific facets to not_analyzed"do
+      mapping_properties = mapping.to_h.fetch("cma-cases").fetch("properties").slice(format_facets)
 
       mapping_properties.each do |_, attributes|
         expect(attributes['index']).to eq('not_analyzed')
