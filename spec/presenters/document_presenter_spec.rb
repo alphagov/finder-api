@@ -21,7 +21,7 @@ describe DocumentPresenter do
   let(:schema) {
     double(
       :schema,
-      facets: ["case_type"],
+      expandable_facet_names: ["case_type"],
     ).tap { |d|
       allow(d).to receive(:label_for)
         .with("case_type", case_type_value)

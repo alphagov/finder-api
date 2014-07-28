@@ -13,10 +13,10 @@ class FinderSchema
     schema
   end
 
-  def facets
-    schema.fetch("facets", []).map do |facet|
+  def expandable_facet_names
+    text_facets.map { |facet|
       facet.fetch("key")
-    end
+    }
   end
 
   def options_for(facet_name)
@@ -50,5 +50,11 @@ private
         value.fetch("value", "")
       ]
     end
+  end
+
+  def text_facets
+    schema.fetch("facets", []).select { |facet|
+      facet.fetch("elasticsearch_config", {}).fetch("type", "text") == "text"
+    }
   end
 end
