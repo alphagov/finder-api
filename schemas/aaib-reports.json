@@ -37,7 +37,7 @@
       "key": "date_of_occurrence",
       "name": "Date of occurrence",
       "type": "multi-select",
-      "preposition": "and date of occurrence",
+      "preposition": "date of occurrence",
       "elasticsearch_config": {
         "type": "date"
       },
