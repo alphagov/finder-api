@@ -8,6 +8,7 @@
       "name": "Aircraft category",
       "type": "multi-select",
       "include_blank": false,
+      "preposition": "in aircraft category",
       "allowed_values": [
         {"label": "Commercial - fixed wing", "value": "commercial-fixed-wing"},
         {"label": "Commercial - rotorcraft", "value": "commercial-rotorcraft"},
@@ -21,6 +22,7 @@
       "name": "Report type",
       "type": "multi-select",
       "include_blank": false,
+      "preposition": "of type",
       "allowed_values": [
         {"label": "Annual safety report", "value": "annual-safety-report"},
         {"label": "Bulletin - Correspondence investigation", "value": "correspondence-investigation"},
@@ -35,6 +37,7 @@
       "key": "date_of_occurrence",
       "name": "Date of occurrence",
       "type": "multi-select",
+      "preposition": "and date of occurrence",
       "elasticsearch_config": {
         "type": "date"
       },
