@@ -21,7 +21,21 @@ describe FinderSchema do
           "allowed_values" => [
             {"label" => "CA98 and civil cartels", "value" => "ca98-and-civil-cartels"}
           ]
-        }
+        },
+        {
+          "key" => "opened_date",
+          "name" => "Opened date",
+          "type" => "multi-select",
+          "elasticsearch_config" => {
+            "type" => "date",
+          },
+          "allowed_values" => [
+            {"label" => "2011", "value" => "2011"},
+            {"label" => "2010", "value" => "2010"},
+            {"label" => "2009", "value" => "2009"},
+            {"label" => "2008", "value" => "2008"},
+          ],
+        },
       ]
     }
   }
@@ -33,9 +47,9 @@ describe FinderSchema do
     end
   end
 
-  describe "#facets" do
-    it "returns a list of facets" do
-      expect(finder_schema.facets).to eq(["case_type"])
+  describe "#expandable_facet_names" do
+    it "returns a list of facet names that can be expanded using the schema" do
+      expect(finder_schema.expandable_facet_names).to eq(["case_type"])
     end
   end
 

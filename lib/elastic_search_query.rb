@@ -20,7 +20,7 @@ class ElasticSearchQuery
     criteria
       .except("keywords")
       .each do |key, value|
-        if key.to_s.end_with?("_date")
+        if key.to_s =~ /(^|_)date(_|$)/
           @date_criteria[key] = value
         else
           @term_criteria[key] = value

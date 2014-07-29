@@ -39,10 +39,6 @@ class DocumentPresenter
   end
 
   def expandable_facets
-    multi_select_field_names & data.keys
-  end
-
-  def multi_select_field_names
-    schema.facets
+    schema.expandable_facet_names & data.keys
   end
 end
