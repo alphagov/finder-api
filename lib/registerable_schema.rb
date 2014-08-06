@@ -20,6 +20,6 @@ class RegisterableSchema
   end
 
   def paths
-    ["/#{slug}"]
+    ["/#{slug}", "/#{slug}.json"]
   end
 end
