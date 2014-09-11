@@ -15,6 +15,6 @@ describe RegisterableSchema do
     expect(registerable.title).to eq schema['name']
     expect(registerable.description).to eq ""
     expect(registerable.state).to eq "live"
-    expect(registerable.paths).to eq ["/cma-cases", "/cma-cases.json"]
+    expect(registerable.paths).to eq ["/cma-cases", "/cma-cases.json", "/cma-cases/signup"]
   end
 end
