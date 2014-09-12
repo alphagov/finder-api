@@ -1,6 +1,7 @@
-
-Before('@stub_panopticon_registerer') do
+Before('@stub_panopticon') do
   require 'panopticon_registerer'
+  @fake_panopticon = double("panopticon")
 
-  allow(PanopticonRegisterer).to receive(:register)
+  allow(@fake_panopticon).to receive(:register)
+  allow(GdsApi::Panopticon::Registerer).to receive(:new).and_return(@fake_panopticon)
 end

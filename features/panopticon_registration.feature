@@ -3,7 +3,7 @@ Feature: Registration with panopticon
   I want to be able to register all finders with panopticon
   So that they appear on the main GOV.UK domain
 
-@stub_panopticon_registerer
+@stub_panopticon
 Scenario:
   When I run the panopticon:register rake task
   Then the finders have been registered with panopticon

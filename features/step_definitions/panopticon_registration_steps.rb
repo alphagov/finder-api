@@ -11,11 +11,9 @@ Then(/^the finders have been registered with panopticon$/) do
     aaib-reports
     cma-cases
     international-development-funding
+    drug-device-alerts
+    drug-safety-update
   )
 
-  slugs.each do |slug|
-    expect(PanopticonRegisterer).to(
-      have_received(:register).with(hash_including("slug" => slug))
-    )
-  end
+  expect(@fake_panopticon).to have_received(:register).exactly(slugs.size).times
 end
