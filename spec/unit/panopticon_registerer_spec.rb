@@ -3,21 +3,26 @@ require 'panopticon_registerer'
 describe PanopticonRegisterer do
   describe '.register' do
     it "uses GdsApi::Panopticon::Registerer to register the schema" do
-
-      mock_registerer = double("registerer")
-
-      first_registerable = double("first_registerable")
-      second_registerable = double("second_registerable")
-      mock_registerables = [first_registerable, second_registerable]
+      finder_registerer = double("finder_registerer")
+      signup_registerer = double("signup_registerer")
 
       expect(GdsApi::Panopticon::Registerer).to receive(:new)
         .with(owning_app: 'finder-api', rendering_app: 'finder-frontend', kind: 'finder')
-        .and_return(mock_registerer)
+        .and_return(finder_registerer)
 
-      expect(mock_registerer).to receive(:register).with(first_registerable)
-      expect(mock_registerer).to receive(:register).with(second_registerable)
+      expect(GdsApi::Panopticon::Registerer).to receive(:new)
+        .with(owning_app: 'finder-api', rendering_app: 'finder-frontend', kind: 'finder_email_signup')
+        .and_return(signup_registerer)
 
-      PanopticonRegisterer.register(mock_registerables)
+      expect(finder_registerer).to receive(:register).twice
+      expect(signup_registerer).to receive(:register).twice
+
+      metadata = [
+        {slug: "first-finder", name: "first finder"},
+        {slug: "second-finder", name: "second finder"},
+      ]
+
+      PanopticonRegisterer.register(metadata)
     end
   end
 end

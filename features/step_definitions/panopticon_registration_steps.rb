@@ -15,5 +15,5 @@ Then(/^the finders have been registered with panopticon$/) do
     drug-safety-update
   )
 
-  expect(@fake_panopticon).to have_received(:register).exactly(slugs.size).times
+  expect(@fake_panopticon).to have_received(:register).exactly(slugs.size * 2).times
 end
