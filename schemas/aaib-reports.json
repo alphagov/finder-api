@@ -32,6 +32,12 @@
         {"label": "Formal report", "value": "formal-report"},
         {"label": "Special bulletin", "value": "special-bulletin"}
       ]
+    },
+    {
+      "key": "date_of_occurrence",
+      "name": "Date of occurrence",
+      "type": "date",
+      "preposition": "occurred"
     }
   ]
 }
