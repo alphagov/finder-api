@@ -22,7 +22,7 @@ describe PanopticonRegisterer do
         {slug: "second-finder", name: "second finder"},
       ]
 
-      PanopticonRegisterer.register(metadata)
+      PanopticonRegisterer.new(metadata).call
     end
   end
 end

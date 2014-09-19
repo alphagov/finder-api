@@ -12,6 +12,6 @@ namespace :panopticon do
       MultiJson.load(File.read(file_path))
     end
 
-    PanopticonRegisterer.register(metadata)
+    PanopticonRegisterer.new(metadata).call
   end
 end
