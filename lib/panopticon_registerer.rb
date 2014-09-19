@@ -1,5 +1,6 @@
 require 'gds_api/panopticon'
-require 'artefact_presenters'
+require 'presenters/schema_artefact_presenter'
+require 'presenters/finder_signup_artefact_presenter'
 
 class PanopticonRegisterer
   class << self

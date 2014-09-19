@@ -1,4 +1,5 @@
-require 'artefact_presenters'
+require 'presenters/schema_artefact_presenter'
+require 'presenters/finder_signup_artefact_presenter'
 
 describe 'artefact presenters' do
   let(:signup_copy) { "Lorem ipsum dolor sit amet" }
