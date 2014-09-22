@@ -102,6 +102,13 @@
         {"label": "Consumer enforcement - undertakings", "value": "consumer-enforcement-undertakings"},
         {"label": "Regulatory references and appeals - final determination", "value": "regulatory-references-and-appeals-final-determination"}
       ]
+    },
+
+    {
+      "key": "date_opened",
+      "name": "Opened",
+      "type": "date",
+      "preposition": "opened"
     }
   ]
 }
