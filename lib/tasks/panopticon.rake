@@ -6,10 +6,12 @@ namespace :panopticon do
     require "config/initializers/elasticsearch.rb"
     require 'config/initializers/panopticon_api_credentials.rb'
 
-    app = Application.new(ENV)
+    require "multi_json"
 
-    app.send(:schemas).each do |slug, schema|
-      PanopticonRegisterer.register(schema.to_h)
+    metadata = Dir.glob("metadata/**/*.json").map do |file_path|
+      MultiJson.load(File.read(file_path))
     end
+
+    PanopticonRegisterer.new(metadata).call
   end
 end

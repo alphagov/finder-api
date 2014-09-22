@@ -1,6 +1,5 @@
 {
   "slug": "drug-device-alerts",
-  "name": "Alerts and recalls for drugs and medical devices",
   "document_noun": "alert",
   "facets": [
     {
