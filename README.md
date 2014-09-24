@@ -8,16 +8,6 @@ Finder API has historically been used for two purposes:
   * Generating lists of filters in [alphagov/finder-frontend](https://github.com/alphagov/finder-frontend).
   * Converting metadata keys into human-readable values in
     [alphagov/specialist-frontend](https://github.com/alphagov/specialist-frontend).
-2. As a search backend for [alphagov/finder-frontend](https://github.com/alphagov/finder-frontend).
-  * This behaviour has been deprecated -- [alphagov/rummager](https://github.com/alphagov/rummager) will
-    replace this in [alphagov/finder-frontend](https://github.com/alphagov/finder-frontend)
-
-##Deprecation warning
-Due to rummager replacing finder-api as a search backend, the only route that should be in use within finder-api is:
-
-`GET /finders/:finder_slug/schema.json`
-
-All other routes are deprecated.
 
 ##Running the application
 
