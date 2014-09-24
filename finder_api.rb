@@ -17,22 +17,8 @@ class FinderApi < Sinatra::Application
     sinatra_adapter.success(schema.to_h)
   end
 
-  get '/finders/:finder_type/documents.json' do
-    app.find_documents(sinatra_adapter)
-  end
-
-  put '/finders/:finder_type/:slug' do
-    app.register_document(sinatra_adapter)
-  end
-
-  delete '/finders/:finder_type/:slug' do
-    app.delete_document(sinatra_adapter)
-  end
-
   def initialize(*args, &block)
     super
-
-    app.initialize_persistence
   end
 
   def app
@@ -41,13 +27,6 @@ class FinderApi < Sinatra::Application
 
   def sinatra_adapter
     SinatraAdapter.new(self)
-  end
-
-  def json_for_cases(cases)
-    {
-      document_noun: 'case',
-      documents: cases
-    }.to_json
   end
 
 end
