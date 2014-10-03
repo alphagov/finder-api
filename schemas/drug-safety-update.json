@@ -1,6 +1,8 @@
 {
   "slug": "drug-safety-update",
   "document_noun": "update",
+  "signup_page_text": "Sign up for email updates from the MHRA",
+  "signup_page_path": "/government/organisations/medicines-and-healthcare-products-regulatory-agency/email-signup",
   "facets": [
     {
       "key": "therapeutic_area",

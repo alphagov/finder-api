@@ -1,6 +1,8 @@
 {
   "slug": "drug-device-alerts",
   "document_noun": "alert",
+  "signup_page_text": "Sign up for email alerts from the MHRA",
+  "signup_page_path": "/government/organisations/medicines-and-healthcare-products-regulatory-agency/email-signup",
   "facets": [
     {
       "key": "alert_type",
