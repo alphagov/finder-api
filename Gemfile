@@ -5,7 +5,7 @@ gem 'json'
 gem 'unicorn'
 gem 'rake'
 gem 'multi_json', '1.8.4'
-gem 'gds-api-adapters', '8.4.1'
+gem 'gds-api-adapters', '14.9.0'
 gem 'faraday', '0.8.9'
 gem 'faraday_middleware', '0.9.0'
 
