@@ -1,6 +1,7 @@
 require "gds_api/publishing_api"
 require "presenters/content_item_presenter"
 require "presenters/finder_content_item_presenter"
+require "presenters/finder_signup_content_item_presenter"
 
 class PublishingApiPublisher
   def initialize(schemae)
@@ -10,6 +11,7 @@ class PublishingApiPublisher
   def call
     schemae.each do |metadata|
       export_finder(metadata)
+      export_signup(metadata) if metadata.has_key?("signup_content_id")
     end
   end
 
@@ -18,6 +20,14 @@ private
 
   def export_finder(metadata)
     attrs = exportable_attributes(FinderContentItemPresenter.new(metadata))
+    if metadata.has_key?("signup_content_id")
+      attrs["links"].merge!( { "finder_email_signup" => [metadata["signup_content_id"]] })
+    end
+    publishing_api.put_content_item(attrs["base_path"], attrs)
+  end
+
+  def export_signup(metadata)
+    attrs = exportable_attributes(FinderSignupContentItemPresenter.new(metadata))
     publishing_api.put_content_item(attrs["base_path"], attrs)
   end
 
