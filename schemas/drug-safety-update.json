@@ -33,6 +33,13 @@
         {"label": "Rheumatology", "value": "rheumatology"},
         {"label": "Urology and nephrology", "value": "urology-nephrology"}
       ]
+    },
+
+    {
+      "key": "published_date",
+      "name": "Published",
+      "type": "date",
+      "preposition": "published"
     }
   ]
 }
