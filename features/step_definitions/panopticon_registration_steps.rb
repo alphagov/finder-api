@@ -9,6 +9,7 @@ end
 Then(/^the finders have been registered with panopticon$/) do
   slugs = %w(
     aaib-reports
+    maib-reports
     cma-cases
     international-development-funding
     drug-device-alerts
