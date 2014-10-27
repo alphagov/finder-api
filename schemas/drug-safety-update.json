@@ -36,7 +36,7 @@
     },
 
     {
-      "key": "published_date",
+      "key": "first_published_at",
       "name": "Published",
       "type": "date",
       "preposition": "published"
