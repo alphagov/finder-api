@@ -2,7 +2,6 @@
   "content_id": "1e9c0ada-5f7e-43cc-a55f-cc32757edaa3",
   "slug": "drug-device-alerts",
   "name": "Alerts and recalls for drugs and medical devices",
-  "signup_content_id": "a796ca43-021b-4960-9c99-f41bb8ef2266",
   "signup_copy": "You'll get an email each time an alert is updated or a new alert is published.",
   "organisations": ["240f72bd-9a4d-4f39-94d9-77235cadde8e"],
   "related": ["602be505-4cf4-4f8c-8bfc-7bc4b63a7f47"]
