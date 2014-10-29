@@ -11,6 +11,13 @@ Finder API has historically been used for two purposes:
 
 ##Running the application
 
+Start up the Publishing API to publish Finders to the Content Store:
+
+```
+bundle exec rake publishing_api:publish
+```
+Once the Finders are published, boot the App with:
+
 ```
 $ ./startup.sh
 ```
