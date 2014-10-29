@@ -9,11 +9,12 @@ end
 Then(/^the finders have been registered with panopticon$/) do
   slugs = %w(
     aaib-reports
-    maib-reports
     cma-cases
-    international-development-funding
     drug-device-alerts
     drug-safety-update
+    international-development-funding
+    maib-reports
+    raib-reports
   )
 
   expect(@fake_panopticon).to have_received(:register).exactly(slugs.size * 2).times
