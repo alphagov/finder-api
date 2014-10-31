@@ -1,0 +1,14 @@
+{
+  "content_id": "1e9c0ada-5f7e-43cc-a55f-cc32758edaa3",
+  "slug": "finder-slug",
+  "name": "Test Format reports",
+  "signup_content_id": "a796ca43-051b-4960-9c99-f41bb8ef2266",
+  "signup_copy": "Signup copy info",
+  "organisations": ["241f72bd-9a4d-4f39-94d9-77235cadde8e"],
+  "related": ["606be505-4cf4-4f8c-8bfc-7bc4b63a7f47"],
+  "email_signup_choice": {
+    "choices": ["industrial", "commercial"],
+    "key_name": "zone",
+    "key": "zone"
+  }
+}
