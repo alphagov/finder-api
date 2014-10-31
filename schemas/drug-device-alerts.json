@@ -1,6 +1,7 @@
 {
   "slug": "drug-device-alerts",
   "document_noun": "alert",
+  "keyword_search_placeholder": "eg Drug or device name",
   "facets": [
     {
       "key": "alert_type",
