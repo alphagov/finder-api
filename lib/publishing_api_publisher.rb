@@ -47,7 +47,7 @@ private
       "publishing_app" => "finder-api",
       "rendering_app" => item.rendering_app,
       "routes" => item.routes,
-      "details" => {},
+      "details" => item.details,
       "links" => {
         "organisations" => item.organisations,
         "topics" => [],
