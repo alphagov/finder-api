@@ -11,10 +11,6 @@ class FinderSignupContentItemPresenter < ContentItemPresenter
     "/#{metadata["slug"]}/email-signup"
   end
 
-  def details
-    {}
-  end
-
   def description
     metadata["signup_copy"]
   end
