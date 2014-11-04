@@ -9,10 +9,6 @@ class ContentItemPresenter < Struct.new(:metadata)
     Time.new.utc.iso8601
   end
 
-  def details
-    {}
-  end
-
   def rendering_app
     "finder-frontend"
   end

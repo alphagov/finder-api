@@ -15,6 +15,12 @@ class FinderContentItemPresenter < ContentItemPresenter
     ""
   end
 
+  def details
+    {
+      beta: metadata.fetch("beta", false),
+    }
+  end
+
   def format
     "finder"
   end
