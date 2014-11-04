@@ -31,4 +31,10 @@ class FinderSignupContentItemPresenter < ContentItemPresenter
       }
     ]
   end
+
+  def details
+    {
+      "email_signup_choice" => metadata["email_signup_choice"],
+    }
+  end
 end

@@ -9,8 +9,12 @@ class ContentItemPresenter < Struct.new(:metadata)
     Time.new.utc.iso8601
   end
 
+  # Put this into the details hash in the content store to let finder-frontendd render the checkboxes.
   def details
-    {}
+    {
+      tag_key: "alert_type",
+      tags: ["devices", "drugs"],
+    }
   end
 
   def rendering_app
