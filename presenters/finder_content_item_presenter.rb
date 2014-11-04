@@ -23,10 +23,6 @@ class FinderContentItemPresenter < ContentItemPresenter
     metadata.fetch("related", [])
   end
 
-  def details
-    {}
-  end
-
   def routes
     [
       {
