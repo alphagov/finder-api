@@ -7,8 +7,18 @@
   "organisations": ["240f72bd-9a4d-4f39-94d9-77235cadde8e"],
   "related": ["602be505-4cf4-4f8c-8bfc-7bc4b63a7f47"],
   "email_signup_choice": {
-    "choices": ["drug", "device"],
     "key": "alert_type",
-    "key_name": "alert type"
+    "choices": [
+      {
+        "key": "device",
+        "name": "Medical device alerts",
+        "body": "information published by the MHRA about defective medical devices."
+      },
+      {
+        "key": "drug",
+        "name": "Drug alerts",
+        "body": "information published by the MHRA about defective medicines."
+      }
+    ]
   }
 }

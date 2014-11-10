@@ -7,7 +7,18 @@
   "organisations": ["241f72bd-9a4d-4f39-94d9-77235cadde8e"],
   "related": ["606be505-4cf4-4f8c-8bfc-7bc4b63a7f47"],
   "email_signup_choice": {
-    "choices": ["industrial", "commercial"],
+    "choices": [
+      {
+        "key": "industrial",
+        "name": "Industrial zones",
+        "body": "information published by City about industrial zones"
+      },
+      {
+        "key": "commercial",
+        "name": "Commercial zones",
+        "body": "information published by City about commercial zones"
+      }
+    ],
     "key_name": "zone",
     "key": "zone"
   }

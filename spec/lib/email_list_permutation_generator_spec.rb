@@ -14,8 +14,10 @@ describe EmailListPermutationGenerator do
   }
 
   describe "#each_combination_of" do
+    let(:available_choices) { choices_hash["choices"].map { |entry| entry["key"] } }
+
     it "correctly identifies array combinations" do
-      expect(creator.send(:each_combination_of, choices_hash["choices"])).to eq([
+      expect(creator.send(:each_combination_of, available_choices)).to eq([
         ["industrial"],
         ["commercial"],
         ["industrial", "commercial"],
