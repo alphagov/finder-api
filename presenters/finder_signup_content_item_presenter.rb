@@ -1,6 +1,6 @@
 class FinderSignupContentItemPresenter < ContentItemPresenter
   def title
-    "#{metadata["name"]} email alert subscription"
+    metadata["name"]
   end
 
   def content_id
