@@ -52,7 +52,7 @@ private
   end
 
   def api_client
-    @api_client ||= api_client_class.new(Plek.current.find("email-alert-api"))
+    @api_client ||= api_client_class.new(Plek.current.find("email-alert-api"), {timeout: 30})
   end
 
   def email_signup_choice
