@@ -11,12 +11,12 @@
     "key": "alert_type",
     "choices": [
       {
-        "key": "device",
+        "key": "devices",
         "name": "Medical device alerts",
         "body": "information published by the MHRA about defective medical devices."
       },
       {
-        "key": "drug",
+        "key": "drugs",
         "name": "Drug alerts",
         "body": "information published by the MHRA about defective medicines."
       }
