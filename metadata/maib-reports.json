@@ -1,6 +1,7 @@
 {
   "content_id": "33eb214a-9291-49d3-8789-445c1e97b586",
   "slug": "maib-reports",
+  "format": "maib_report",
   "name": "Marine Accident Investigation Branch reports",
   "beta": true,
   "signup_content_id": "56cb57e2-7e7f-4f67-b2f6-39c9a55385dc",
