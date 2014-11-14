@@ -27,7 +27,7 @@ class EmailListCreator
         {
           "title" => metadata["name"],
           "tags" => {
-            "format" => [metadata["slug"]],
+            "format" => [metadata["format"]],
           }
         }
       )
@@ -46,7 +46,7 @@ private
 
   def permutation_generator
     @generator ||= permutation_generator_class.new(
-      metadata["slug"],
+      metadata["format"],
       email_signup_choice,
     )
   end

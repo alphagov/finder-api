@@ -1,6 +1,7 @@
 {
   "content_id": "1e9c0ada-5f7e-43cc-a55f-cc32758edaa3",
   "slug": "finder-slug",
+  "format": "finder_format",
   "name": "Test Format reports",
   "signup_content_id": "a796ca43-051b-4960-9c99-f41bb8ef2266",
   "signup_copy": "Signup copy info",

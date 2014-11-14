@@ -21,7 +21,7 @@ describe EmailListCreator do
 
     it "requests the possible permutations" do
       expect(permutation_generator_class).to receive(:new).with(
-        metadata["slug"],
+        metadata["format"],
         metadata["email_signup_choice"],
       )
       expect(permutation_generator).to receive(:all_possible_tag_hashes)
@@ -32,9 +32,9 @@ describe EmailListCreator do
     it "calls the email-alert-api once for each permutation" do
       allow(permutation_generator).to receive(:all_possible_tag_hashes).and_return(
         [
-          {"format" => ["finder-slug"], "zone" => ["industrial"]},
-          {"format" => ["finder-slug"], "zone" => ["commercial"]},
-          {"format" => ["finder-slug"], "zone" => ["industrial", "commercial"]},
+          {"format" => ["finder_format"], "zone" => ["industrial"]},
+          {"format" => ["finder_format"], "zone" => ["commercial"]},
+          {"format" => ["finder_format"], "zone" => ["industrial", "commercial"]},
         ]
       )
 
@@ -47,7 +47,7 @@ describe EmailListCreator do
           {
             "title" => title,
             "tags" => {
-              "format" => ["finder-slug"],
+              "format" => ["finder_format"],
               "zone" => zones,
             }
           }
@@ -65,7 +65,7 @@ describe EmailListCreator do
         {
           "title" => "Test Format reports",
           "tags" => {
-            "format" => ["finder-slug"]
+            "format" => ["finder_format"]
           }
         }
       )
