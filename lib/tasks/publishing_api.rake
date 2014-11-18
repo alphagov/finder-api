@@ -10,6 +10,10 @@ namespace :publishing_api do
       MultiJson.load(File.read(file_path))
     end
 
-    PublishingApiPublisher.new(metadata).call
+    schemae = Dir.glob("schemas/**/*.json").map do |file_path|
+      MultiJson.load(File.read(file_path))
+    end
+
+    PublishingApiPublisher.new(metadata, schemae).call
   end
 end

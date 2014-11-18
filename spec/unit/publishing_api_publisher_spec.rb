@@ -10,13 +10,18 @@ describe PublishingApiPublisher do
         {"slug" => "second-finder", "name" => "second finder"},
       ]
 
+      schemae = [
+        {"slug" => "first-finder", "facets" => ["a facet", "another facet"] },
+        {"slug" => "second-finder", "facets" => ["a facet", "another facet"] },
+      ]
+
       expect(GdsApi::PublishingApi).to receive(:new)
         .with(Plek.new.find("publishing-api"))
         .and_return(publishing_api)
 
       expect(publishing_api).to receive(:put_content_item).twice
 
-      PublishingApiPublisher.new(metadata).call
+      PublishingApiPublisher.new(metadata, schemae).call
     end
   end
 end

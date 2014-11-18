@@ -18,6 +18,9 @@ class FinderContentItemPresenter < ContentItemPresenter
   def details
     {
       beta: metadata.fetch("beta", false),
+      document_noun: schema["document_noun"],
+      document_type: metadata["format"],
+      facets: schema["facets"],
     }
   end
 
