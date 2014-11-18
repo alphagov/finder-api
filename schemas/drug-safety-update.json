@@ -1,7 +1,6 @@
 {
   "slug": "drug-safety-update",
   "document_noun": "update",
-  "keyword_search_placeholder": "eg drug name",
   "facets": [
     {
       "key": "therapeutic_area",
