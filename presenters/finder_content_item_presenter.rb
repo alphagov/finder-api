@@ -20,6 +20,7 @@ class FinderContentItemPresenter < ContentItemPresenter
       beta: metadata.fetch("beta", false),
       document_noun: schema["document_noun"],
       document_type: metadata["format"],
+      email_signup_enabled: metadata.fetch("signup_enabled", false),
       facets: schema["facets"],
     }
   end
