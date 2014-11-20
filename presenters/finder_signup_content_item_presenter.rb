@@ -34,6 +34,7 @@ class FinderSignupContentItemPresenter < ContentItemPresenter
 
   def details
     {
+      "beta" => metadata.fetch("signup_beta", false),
       "email_signup_choice" => metadata["email_signup_choice"],
     }
   end
