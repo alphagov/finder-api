@@ -18,6 +18,7 @@ class FinderContentItemPresenter < ContentItemPresenter
   def details
     {
       beta: metadata.fetch("beta", false),
+      beta_message: metadata.fetch("beta_message", nil),
       document_noun: schema["document_noun"],
       document_type: metadata["format"],
       email_signup_enabled: metadata.fetch("signup_enabled", false),
