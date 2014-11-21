@@ -3,6 +3,7 @@
   "slug": "drug-safety-update",
   "format": "drug_safety_update",
   "name": "Drug safety update",
+  "beta": true,
   "signup_content_id": "ccf11f55-02ee-48ec-b71c-7e3fe78b3a17",
   "signup_copy": "The drug safety update is a monthly newsletter for healthcare professionals, bringing you information and clinical advice on the safe use of medicines.",
   "organisations": ["240f72bd-9a4d-4f39-94d9-77235cadde8e"],
