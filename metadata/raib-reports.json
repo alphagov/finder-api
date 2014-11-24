@@ -12,19 +12,23 @@
     "choices": [
       {
         "key": "heavy-rail",
-        "name": "Heavy rail"
+        "name": "Heavy rail",
+        "prechecked": false
       },
       {
         "key": "light-rail",
-        "name": "Light rail"
+        "name": "Light rail",
+        "prechecked": false
       },
       {
         "key": "metros",
-        "name": "Metros"
+        "name": "Metros",
+        "prechecked": false
       },
       {
         "key": "heritage-railways",
-        "name": "Heritage railways"
+        "name": "Heritage railways",
+        "prechecked": false
       }
     ]
   }

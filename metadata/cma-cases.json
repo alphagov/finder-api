@@ -11,31 +11,38 @@
     "choices": [
       {
         "key": "ca98-and-civil-cartels",
-        "name": "CA98 and civil cartels"
+        "name": "CA98 and civil cartels",
+        "prechecked": false
       },
       {
         "key": "criminal-cartels",
-        "name": "Criminal cartels"
+        "name": "Criminal cartels",
+        "prechecked": false
       },
       {
         "key": "markets",
-        "name": "Markets"
+        "name": "Markets",
+        "prechecked": false
       },
       {
         "key": "mergers",
-        "name": "Mergers"
+        "name": "Mergers",
+        "prechecked": false
       },
       {
         "key": "consumer-enforcement",
-        "name": "Consumer enforcement"
+        "name": "Consumer enforcement",
+        "prechecked": false
       },
       {
         "key": "regulatory-references-and-appeals",
-        "name": "Regulatory references and appeals"
+        "name": "Regulatory references and appeals",
+        "prechecked": false
       },
       {
         "key": "review-of-orders-and-undertakings",
-        "name": "Reviews of orders and undertakings"
+        "name": "Reviews of orders and undertakings",
+        "prechecked": false
       }
     ]
   }

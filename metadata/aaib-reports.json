@@ -12,23 +12,28 @@
     "choices": [
       {
         "key": "commercial-fixed-wing",
-        "name": "Commercial - fixed wing"
+        "name": "Commercial - fixed wing",
+        "prechecked": false
       },
       {
         "key": "commercial-rotorcraft",
-        "name": "Commercial - rotorcraft"
+        "name": "Commercial - rotorcraft",
+        "prechecked": false
       },
       {
         "key": "general-aviation-fixed-wing",
-        "name": "General aviation - fixed wing"
+        "name": "General aviation - fixed wing",
+        "prechecked": false
       },
       {
         "key": "general-aviation-rotorcraft",
-        "name": "General aviation - rotorcraft"
+        "name": "General aviation - rotorcraft",
+        "prechecked": false
       },
       {
         "key": "sport-aviation-and-balloons",
-        "name": "Sport aviation and balloons"
+        "name": "Sport aviation and balloons",
+        "prechecked": false
       }
     ]
   }

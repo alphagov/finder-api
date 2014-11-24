@@ -12,23 +12,28 @@
     "choices": [
       {
         "key": "merchant-vessel-100-gross-tons-or-over",
-        "name": "Merchant vessel 100 gross tons or over"
+        "name": "Merchant vessel 100 gross tons or over",
+        "prechecked": false
       },
       {
         "key": "merchant-vessel-under-100-gross-tons",
-        "name": "Merchant vessel under 100 gross tons"
+        "name": "Merchant vessel under 100 gross tons",
+        "prechecked": false
       },
       {
         "key": "fishing-vessel",
-        "name": "Fishing vessel"
+        "name": "Fishing vessel",
+        "prechecked": false
       },
       {
         "key": "recreational-craft-sail",
-        "name": "Recreational craft - sail"
+        "name": "Recreational craft - sail",
+        "prechecked": false
       },
       {
         "key": "recreational-craft-power",
-        "name": "Recreational craft - power"
+        "name": "Recreational craft - power",
+        "prechecked": false
       }
     ]
   }

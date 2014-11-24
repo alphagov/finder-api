@@ -13,63 +13,78 @@
     "choices": [
       {
         "key": "agriculture",
-        "name": "Agriculture"
+        "name": "Agriculture",
+        "prechecked": false
       },
       {
         "key": "climate-change",
-        "name": "Climate change"
+        "name": "Climate change",
+        "prechecked": false
       },
       {
         "key": "disabilities",
-        "name": "Disabilities"
+        "name": "Disabilities",
+        "prechecked": false
       },
       {
         "key": "education",
-        "name": "Education"
+        "name": "Education",
+        "prechecked": false
       },
       {
         "key": "empowerment-and-accountability",
-        "name": "Empowerment and accountability"
+        "name": "Empowerment and accountability",
+        "prechecked": false
       },
       {
         "key": "environment",
-        "name": "Environment"
+        "name": "Environment",
+        "prechecked": false
       },
       {
         "key": "girls-and-women",
-        "name": "Girls and women"
+        "name": "Girls and women",
+        "prechecked": false
       },
       {
         "key": "health",
-        "name": "Health"
+        "name": "Health",
+        "prechecked": false
       },
       {
         "key": "humanitarian-emergencies-disasters",
-        "name": "Humanitarian emergencies/disasters"
+        "name": "Humanitarian emergencies/disasters",
+        "prechecked": false
       },
       {
         "key": "livelihoods",
-        "name": "Livelihoods"
+        "name": "Livelihoods",
+        "prechecked": false
       },
       {
         "key": "peace-and-access-to-justice",
-        "name": "Peace and access to justice"
+        "name": "Peace and access to justice",
+        "prechecked": false
       },
       {
         "key": "private-sector-business",
-        "name": "Private sector/business"
+        "name": "Private sector/business",
+        "prechecked": false
       },
       {
         "key": "technology",
-        "name": "Technology"
+        "name": "Technology",
+        "prechecked": false
       },
       {
         "key": "trade",
-        "name": "Trade"
+        "name": "Trade",
+        "prechecked": false
       },
       {
         "key": "water-and-sanitation",
-        "name": "Water and sanitation"
+        "name": "Water and sanitation",
+        "prechecked": false
       }
     ]
   }
