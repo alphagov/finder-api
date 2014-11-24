@@ -5,5 +5,45 @@
   "name": "Competition and Markets Authority cases",
   "signup_content_id": "43dd2b13-93ec-4ca6-a7a4-e2eb5f5d485a",
   "signup_copy": "You'll get an email each time a case is updated or a new case is published.",
-  "organisations": ["957eb4ec-089b-4f71-ba2a-dc69ac8919ea"]
+  "organisations": ["957eb4ec-089b-4f71-ba2a-dc69ac8919ea"],
+  "email_signup_choice": {
+    "key": "case_type",
+    "choices": [
+      {
+        "key": "ca98-and-civil-cartels",
+        "name": "CA98 and civil cartels",
+        "prechecked": false
+      },
+      {
+        "key": "criminal-cartels",
+        "name": "Criminal cartels",
+        "prechecked": false
+      },
+      {
+        "key": "markets",
+        "name": "Markets",
+        "prechecked": false
+      },
+      {
+        "key": "mergers",
+        "name": "Mergers",
+        "prechecked": false
+      },
+      {
+        "key": "consumer-enforcement",
+        "name": "Consumer enforcement",
+        "prechecked": false
+      },
+      {
+        "key": "regulatory-references-and-appeals",
+        "name": "Regulatory references and appeals",
+        "prechecked": false
+      },
+      {
+        "key": "review-of-orders-and-undertakings",
+        "name": "Reviews of orders and undertakings",
+        "prechecked": false
+      }
+    ]
+  }
 }

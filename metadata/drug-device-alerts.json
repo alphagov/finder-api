@@ -14,12 +14,14 @@
       {
         "key": "devices",
         "name": "Medical device alerts",
-        "body": "information published by the MHRA about defective medical devices."
+        "body": "information published by the MHRA about defective medical devices.",
+        "prechecked": true
       },
       {
         "key": "drugs",
         "name": "Drug alerts",
-        "body": "information published by the MHRA about defective medicines."
+        "body": "information published by the MHRA about defective medicines.",
+        "prechecked": true
       }
     ]
   }
