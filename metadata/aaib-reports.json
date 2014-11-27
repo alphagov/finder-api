@@ -6,35 +6,5 @@
   "beta": true,
   "signup_content_id": "1ad5918c-19ff-4431-b20b-1bab890cd84b",
   "signup_copy": "You'll get an email each time a report is updated or a new report is published.",
-  "organisations": ["38eb5d8f-2d89-480c-8655-e2e7ac23f8f4"],
-  "email_signup_choice": {
-    "key": "aircraft_category",
-    "choices": [
-      {
-        "key": "commercial-fixed-wing",
-        "name": "Commercial - fixed wing",
-        "prechecked": false
-      },
-      {
-        "key": "commercial-rotorcraft",
-        "name": "Commercial - rotorcraft",
-        "prechecked": false
-      },
-      {
-        "key": "general-aviation-fixed-wing",
-        "name": "General aviation - fixed wing",
-        "prechecked": false
-      },
-      {
-        "key": "general-aviation-rotorcraft",
-        "name": "General aviation - rotorcraft",
-        "prechecked": false
-      },
-      {
-        "key": "sport-aviation-and-balloons",
-        "name": "Sport aviation and balloons",
-        "prechecked": false
-      }
-    ]
-  }
+  "organisations": ["38eb5d8f-2d89-480c-8655-e2e7ac23f8f4"]
 }
