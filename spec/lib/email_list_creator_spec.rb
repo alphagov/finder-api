@@ -39,9 +39,9 @@ describe EmailListCreator do
       )
 
       {
-        "Test Format reports with zone industrial" => ["industrial"],
-        "Test Format reports with zone commercial" => ["commercial"],
-        "Test Format reports with zone industrial or commercial" => ["industrial", "commercial"],
+        "Industrial zones" => ["industrial"],
+        "Commercial zones" => ["commercial"],
+        "Industrial zones and Commercial zones" => ["industrial", "commercial"],
       }.each_pair do |title, zones|
         expect(email_alert_api_client).to receive(:find_or_create_subscriber_list).with(
           {

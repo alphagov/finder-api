@@ -38,10 +38,16 @@ private
   attr_reader :metadata, :permutation_generator_class, :api_client_class
 
   def list_title_for(tag_hash)
-    key = email_signup_choice["key"]
-    key_name = email_signup_choice["key_name"]
-    selected_options = tag_hash[key].join(" or ")
-    "#{metadata["name"]} with #{key_name} #{selected_options}"
+    keys = tag_hash[email_signup_choice["key"]]
+    keys.collect {|key| name_for_key(key)}.join(" and ")
+  end
+
+  def name_for_key(key)
+    find_choice_by_key(key)["name"]
+  end
+
+  def find_choice_by_key(key)
+    email_signup_choice["choices"].select {|choice| choice["key"] == key}[0]
   end
 
   def permutation_generator
