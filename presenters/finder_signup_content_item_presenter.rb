@@ -1,6 +1,6 @@
 class FinderSignupContentItemPresenter < ContentItemPresenter
   def title
-    metadata["name"]
+    metadata.fetch("signup_title", metadata["name"])
   end
 
   def content_id
