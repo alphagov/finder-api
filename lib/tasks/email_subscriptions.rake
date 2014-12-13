@@ -1,13 +1,6 @@
 namespace :email_subscriptions do
-  desc "Ensure there is a topic for every combination of email subscription on govdelivery"
+  desc "DEPRECATED: No longer required. Please remove from any deploy scripts"
   task :register_subscriptions do
-    require "application"
-    require "email_list_creator"
-    require "multi_json"
-
-    Dir.glob("metadata/**/*.json").each do |file_path|
-      metadata = MultiJson.load(File.read(file_path))
-      EmailListCreator.new(metadata).call
-    end
+    p "DEPRECATED: rake email_subscriptions:register_subscriptions is no longer required. Please remove from any deploy scripts"
   end
 end
