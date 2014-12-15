@@ -10,21 +10,20 @@
   "signup_copy": "You'll get an email each time an alert is updated or a new alert is published.",
   "organisations": ["240f72bd-9a4d-4f39-94d9-77235cadde8e"],
   "related": ["602be505-4cf4-4f8c-8bfc-7bc4b63a7f47"],
-  "email_signup_choice": {
-    "key": "alert_type",
-    "choices": [
-      {
-        "key": "devices",
-        "name": "Medical device alerts",
-        "body": "information published by the MHRA about defective medical devices.",
-        "prechecked": true
-      },
-      {
-        "key": "drugs",
-        "name": "Drug alerts",
-        "body": "information published by the MHRA about defective medicines.",
-        "prechecked": true
-      }
-    ]
-  }
+  "email_signup_choice": [
+    {
+      "key": "devices",
+      "radio_button_name": "Medical device alerts",
+      "topic_name": "medical device alerts",
+      "body": "information published by the MHRA about defective medical devices.",
+      "prechecked": true
+    },
+    {
+      "key": "drugs",
+      "radio_button_name": "Drug alerts",
+      "topic_name": "drug alerts",
+      "body": "information published by the MHRA about defective medicines.",
+      "prechecked": true
+    }
+  ]
 }
