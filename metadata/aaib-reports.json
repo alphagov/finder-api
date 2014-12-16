@@ -11,6 +11,7 @@
     "singular": "Air Accidents Investigation Branch (AAIB) reports with the following aircraft category: ",
     "plural": "Air Accidents Investigation Branch (AAIB) reports with the following aircraft categories: "
   },
+  "email_filter_by": "aircraft_category",
   "email_signup_choice": [
     {
       "key": "commercial-fixed-wing",
